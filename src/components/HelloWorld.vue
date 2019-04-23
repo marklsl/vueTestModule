@@ -1,29 +1,37 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-    </ul>
+    <div @click="routeJump">
+      测试路由功能
+    </div>
+    <div v-if="isShow">
+      <testvue></testvue>
+    </div>
+    <div>
+      <testvuex></testvuex>
+    </div>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'HelloWorld',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
+  import testvue from "@/components/routeMain/testRoute"
+  import testvuex from "@/components/vuex-test/vuex-test"
+  export default {
+    name: 'HelloWorld',
+    components:{
+      testvue,
+      testvuex,
+    },
+    data () {
+      return {
+        isShow: false
+      }
+    },
+    methods:{
+      routeJump:function(a,b){
+        this.isShow=true;
+      }
     }
   }
-}
 </script>
 <style scoped>
 h1, h2 {
