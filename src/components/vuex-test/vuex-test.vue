@@ -2,23 +2,32 @@
   <div>
     <div @click="choiceCity">假装点击按钮</div>
     <div>{{city}}</div>
+    <div>{{isCommon}}</div>
+    <div>{{totalStr}}</div>
   </div>
 </template>
 <script>
+
   export default {
     data () {
       return {
+        city:"我是初始化城市",
+        test_city:"我是测试数据",
+        isCommon:this.$store.getters.getIsCommonFn
       }
     },
     methods:{
       choiceCity:function(){
-        this.$router.push("/hello/testBegin");
+        this.$store.dispatch('setCityName','我是action入口进入');
+        this.city=this.$store.getters.getCityFn;
+
+        this.$store.commit('changeComon');
+        this.isCommon=this.$store.getters.getIsCommonFn;
       }
     },
     computed:{
-      city:function() {
-        // 通过vuex的getters方法来获取state里面的数据
-        return this.$store.getters.getCityFn;
+      totalStr(){
+        return this.city+"----"+this.isCommon;
       }
     }
   }
