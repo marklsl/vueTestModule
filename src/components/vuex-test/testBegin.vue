@@ -2,7 +2,7 @@
   <div class="city">
     <ul>
       <li v-for="(item,index) in cityArr" @click="backFn(index)">
-        <h2>{{item}}</h2>
+        <h2>我是按钮{{item}}</h2>
       </li>
     </ul>
   </div>

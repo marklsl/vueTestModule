@@ -3,7 +3,7 @@
     <div @click="choiceCity">假装点击按钮</div>
     <div>{{city}}</div>
     <div>{{isCommon}}</div>
-    <div>{{totalStr}}</div>
+    <div>我是城市名称{{totalStr}}</div>
   </div>
 </template>
 <script>
