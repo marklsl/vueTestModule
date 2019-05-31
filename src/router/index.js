@@ -39,6 +39,11 @@ export default new Router({
       path: '/leafletMap',
       name: 'leafletMap',
       component: () => import('@/components/mapComponent/leafletMapMain')
-    }
+    },
+    {
+      path: '/olMap',
+      name: 'olMap',
+      component: () => import('@/components/mapComponent/olMap')
+    },
   ]
 })

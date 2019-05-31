@@ -10,7 +10,8 @@
 <!--    <div>-->
 <!--      <testvuex></testvuex>-->
 <!--    </div>-->
-    <div id="btn_open" @click="openMap">我用来打开新世纪的大门</div>
+    <div id="btn_open" @click="openMap">我用来打开leaflet的大门</div>
+    <div id="btn_openOl" @click="openOlMap">我用来打开ol的大门</div>
   </div>
 </template>
 
@@ -34,6 +35,9 @@
       },
       openMap:function(){
         this.$router.push("leafletMap");
+      },
+      openOlMap:function(){
+        this.$router.push("olMap");
       }
     }
   }
