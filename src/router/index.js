@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import testRoute from '@/components/routeMain/testRoute'
+import leafletMap from '@/components/mapComponent/leafletMapMain'
 
 Vue.use(Router)
 
@@ -33,6 +34,11 @@ export default new Router({
             component: () => import('../components/vuex-test/vuex-test.vue')
           }
         ]
+    },
+    {
+      path: '/leafletMap',
+      name: 'leafletMap',
+      component: () => import('@/components/mapComponent/leafletMapMain')
     }
   ]
 })
