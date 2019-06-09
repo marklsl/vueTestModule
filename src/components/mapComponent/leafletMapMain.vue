@@ -6,6 +6,7 @@
         <l-popup :content="text"></l-popup>
       </l-marker>
     </l-map>
+    <div class="test_getData" @click="getData">我是请求数据的按钮</div>
   </div>
 </template>
 
@@ -28,6 +29,21 @@
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
         marker: L.latLng(47.413220, -1.219482),
         text: 'this is a marker'
+      }
+    },
+    methods:{
+      getData : function(){
+        console.log("我是请求接口");
+        this.$axios
+          .get('/user/aaa')
+          .then(successResponse => {
+            debugger
+            this.responseResult = JSON.stringify(successResponse.data)
+            if (successResponse.data.code === 200) {
+              // this.$router.replace({path: '/index'})
+            }
+          })
+          .catch(failResponse => {});
       }
     }
   }

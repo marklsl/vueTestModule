@@ -8,10 +8,15 @@ import router from './router'
 import store from './store/store.js';
 import 'leaflet/dist/leaflet.css';
 
+// 引用axios，并设置基础URL为后端服务api地址
+let axios = require('axios')
+axios.defaults.baseURL = 'http://localhost:8081/demo'
+// 将API方法绑定到全局
+Vue.prototype.$axios = axios
+
 Vue.config.productionTip = false
 Vue.use(VueX);
 Vue.use(Vue2Leaflet);
-Vue.config.productionTip = false;
 
 /* leaflet icon */
 delete L.Icon.Default.prototype._getIconUrl;

@@ -2,3 +2,10 @@
   width: 1830px;
   height: 910px;
 }
+.test_getData{
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  z-index: 1000;
+  cursor: pointer;
+}
