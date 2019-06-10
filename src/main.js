@@ -1,6 +1,9 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+
 import Vue from 'vue'
+import ElementUI from 'element-ui' //新添加
+import 'element-ui/lib/theme-chalk/index.css' //新添加
 import VueX from 'vuex'
 import * as Vue2Leaflet from 'vue2-leaflet'
 import App from './App'
@@ -15,7 +18,9 @@ axios.defaults.baseURL = 'http://localhost:8081/demo'
 Vue.prototype.$axios = axios
 
 Vue.config.productionTip = false
+
 Vue.use(VueX);
+Vue.use(ElementUI);
 Vue.use(Vue2Leaflet);
 
 /* leaflet icon */

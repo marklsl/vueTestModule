@@ -1,0 +1,21 @@
+.tool_bar{
+  position: absolute;
+  z-index: 400;
+  right: 0px;
+  width: 450px;
+  top: 20px;
+}
+.ele_box_div{
+  height: 40px;
+  background-color: #fff;
+  border-radius: 4px;
+}
+.tool_ele_btn{
+  display: inline-block;
+  width: 18%;
+  line-height: 39px;
+  cursor: pointer;
+}
+.tool_ele_btn:not(:last-child){
+  border-right:2px solid #e3e3e3;
+}

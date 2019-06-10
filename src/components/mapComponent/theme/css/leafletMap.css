@@ -2,6 +2,11 @@
   width: 1830px;
   height: 910px;
 }
+.leafLet_map_box{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
 .test_getData{
   position: absolute;
   top: 10px;
