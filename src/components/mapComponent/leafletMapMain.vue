@@ -35,7 +35,7 @@
         },
         zoom: 13,
         center: L.latLng(47.413220, -1.219482),
-        url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+        url: 'http://t0.tianditu.gov.cn/cva_c/wmts?layer=cva&style=default&tilematrixset=c&Service=WMTS&Request=GetTile&Version=1.0.0&Format=tiles&TileMatrix={z}&TileCol={x}&TileRow={y}',
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
         marker: L.latLng(47.413220, -1.219482),
         text: 'this is a marker',
