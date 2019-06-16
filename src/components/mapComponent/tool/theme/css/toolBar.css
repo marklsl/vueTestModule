@@ -2,13 +2,15 @@
   position: absolute;
   z-index: 400;
   right: 0px;
-  width: 450px;
   top: 20px;
 }
-.ele_box_div{
+.tool_ele_box{
   height: 40px;
   background-color: #fff;
   border-radius: 4px;
+  position: fixed;
+  right: 50px;
+  width: 425px;
 }
 .tool_ele_btn{
   display: inline-block;
@@ -18,4 +20,7 @@
 }
 .tool_ele_btn:not(:last-child){
   border-right:2px solid #e3e3e3;
+}
+.hideClass{
+  display:none
 }

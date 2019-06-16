@@ -1,42 +1,64 @@
 <template>
   <div class="tool_bar">
     <el-row class="btn_box">
-      <el-col :xs="4" :sm="6" :md="8" :lg="9" :xl="20" class="ele_box_div">
-        <div class="tool_ele_box">
-          <div class="tool_ele_btn">路径规划</div>
-          <div class="tool_ele_btn">专题图</div>
-          <div class="tool_ele_btn">标记</div>
-          <div class="tool_ele_btn">量测</div>
-          <div class="tool_ele_btn">定位</div>
-<!--          <el-button code="tool_path_btn" type="success" size="mini" round>路径规划</el-button>-->
-<!--          <el-button code="tool_thematic_map_btn" type="success" size="mini" round>专题图</el-button>-->
-<!--          <el-button code="tool_sign_btn" type="success" size="mini" round>标记</el-button>-->
-<!--          <el-button code="tool_measurement_btn" type="success" size="mini" round>量测</el-button>-->
-<!--          <el-button code="tool_location_btn" type="success" size="mini" round>定位</el-button>-->
-        </div>
-      </el-col>
+      <el-collapse class="tool_ele_box" v-model="activeNames" @change="handleChange">
+        <el-collapse-item class="tool_ele_btn" title="路径规划" name="tool_path">
+          <TOOLPATH></TOOLPATH>
+        </el-collapse-item>
+        <el-collapse-item class="tool_ele_btn" title="专题图" name="tool_thematic">
+          <THEMATIC></THEMATIC>
+        </el-collapse-item>
+        <el-collapse-item class="tool_ele_btn" title="标记" name="tool_sign">
+          <SIGN></SIGN>
+        </el-collapse-item>
+        <el-collapse-item class="tool_ele_btn" title="量测" name="tool_measure">
+          <MEASURE></MEASURE>
+        </el-collapse-item>
+        <el-collapse-item class="tool_ele_btn" title="定位" name="tool_location">
+          <LOCATION></LOCATION>
+        </el-collapse-item>
+      </el-collapse>
 
-      <el-col :xs="4" :sm="6" :md="8" :lg="4" :xl="4">
-        <div class="grid-content bg-purple-light">
-          <el-button class="tool_bar_control" type="success" icon="el-icon-s-cooperation" title="工具箱" circle></el-button>
-        </div>
-      </el-col>
+      <div class="grid-content bg-purple-light onClick" @click="openOrCloseTool($event)">
+        <el-button class="tool_bar_control" type="success" icon="el-icon-s-cooperation" title="工具箱" circle></el-button>
+      </div>
 
     </el-row>
   </div>
 </template>
 
 <script>
-
+  import TOOLPATH from "@/components/mapComponent/tool/secondLev/toolPath"
+  import THEMATIC from "@/components/mapComponent/tool/secondLev/toolThematic"
+  import SIGN from "@/components/mapComponent/tool/secondLev/toolSign"
+  import MEASURE from "@/components/mapComponent/tool/secondLev/toolMeasure"
+  import LOCATION from "@/components/mapComponent/tool/secondLev/toolLocation"
   export default {
     name: 'tool_bar',
     components: {
+      TOOLPATH,
+      THEMATIC,
+      SIGN,
+      MEASURE,
+      LOCATION
     },
     data () {
       return {
       }
     },
     methods:{
+      openOrCloseTool:function(ele){
+        if($(ele.currentTarget).hasClass("onClick")){
+          $(ele.currentTarget).removeClass("onClick");
+          $(".tool_ele_box").animate({width:"0px"},function(){
+            $(".tool_ele_box").addClass("hideClass");
+          });
+        }else{
+          $(ele.currentTarget).addClass("onClick");
+          $(".tool_ele_box").removeClass("hideClass");
+          $(".tool_ele_box").animate({width:"400px"});
+        }
+      }
     }
   }
 </script>

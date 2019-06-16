@@ -10,6 +10,7 @@ import App from './App'
 import router from './router'
 import store from './store/store.js';
 import 'leaflet/dist/leaflet.css';
+import $ from 'jquery';
 
 // 引用axios，并设置基础URL为后端服务api地址
 let axios = require('axios')
