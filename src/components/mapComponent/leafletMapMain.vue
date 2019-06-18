@@ -1,6 +1,6 @@
 <template>
   <div class="vue-leaflet">
-    <l-map class="leafLet_map_box"
+    <l-map @ready="getMap" class="leafLet_map_box"
            :zoom="zoom" :center="center" :options="options">
       <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
       <l-marker :lat-lng="marker">
@@ -41,8 +41,8 @@
         // attribution: '["0", "1", "2", "3", "4", "5", "6", "7"]',
         marker: L.latLng(47.413220, -1.219482),
         text: 'this is a marker',
-
-        if_tool:true//是否展示工具栏
+        if_tool:true,//是否展示工具栏
+        map: {}
       }
     },
     methods:{
@@ -58,14 +58,12 @@
           })
           .catch(failResponse => {});
       },
-      globalVariable:function(){
-        let aa=L;
-
-        debugger
+      getMap(map){
+        this.$store.dispatch("setMapName",map);
+        this.$store.commit('setL',L);
       }
     },
     mounted(){
-      this.globalVariable();
     }
   }
 </script>

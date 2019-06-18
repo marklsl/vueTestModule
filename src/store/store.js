@@ -6,7 +6,8 @@ let store = new Vuex.Store({
   // 1. state
   state:{
     city:"城市名",
-    isCommon:"我刚开始"
+    map:{},
+    L:{},
   },
 
   // // 2. getters
@@ -15,8 +16,11 @@ let store = new Vuex.Store({
     getCityFn(state){
       return state.city;
     },
-    getIsCommonFn(state){
-      return state.isCommon;
+    getMapFn(state){
+      return state.map;
+    },
+    getLeafletFn(state){
+      return state.L;
     }
   },
   // 3. mutations
@@ -26,15 +30,21 @@ let store = new Vuex.Store({
     setCity(state, name){
       state.city = name;//将传参设置给state的city
     },
-    changeComon(state){
-      state.isCommon = "不，你已经结束了";//将传参设置给state的city
-    }
+    setMap(state, mapObj){
+      state.map = mapObj;//将传参设置给state的city
+    },
+    setL(state, L){
+      state.L = L;//将传参设置给state的city
+    },
   },
   // 4. actions
   // 通常跟api接口打交道
   actions:{
     setCityName({commit,state}, name){
       commit("setCity", name);
+    },
+    setMapName({commit,state}, mapObj){
+      commit("setMap", mapObj);
     }
   },
 });
