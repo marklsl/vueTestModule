@@ -25,3 +25,9 @@ npm test
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+npm install vuex --save
+npm install vue2-leaflet --save
+npm  install ol --save
+npm i element-ui --save
+npm install axios --save
