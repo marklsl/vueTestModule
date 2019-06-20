@@ -14,27 +14,34 @@
     },
     data () {
       return {
+        map:this.$store.getters.getMapFn,
+        iconUrl:"../../tool/theme/img/location.png"
       }
     },
     methods:{
       dynamicMapping:function(ele){
-        let param={};
-        param.L=this.$store.getters.getLeafletFn;
-        param.map=this.$store.getters.getMapFn;
-        let utilJs=new utilFunction(param);
-
-        var pointParam={
-          latlng:[39.91737,116.401394],
-          radius:10,
-          color:'#ff0000',
-          fillColor:'#000000',
-          fillColor:'0.8',
-        };
-        utilJs.drawPoint(pointParam);
+        // //绘制点
+        // let param={};
+        // param.L=this.$store.getters.getLeafletFn;
+        // param.map=this.$store.getters.getMapFn;
+        // let utilJs=new utilFunction(param);
+        // var pointParam={
+        //   latlng:[39.91737,116.401394],
+        //   radius:10,
+        //   color:'#ff0000',
+        //   fillColor:'#000000',
+        //   fillColor:'0.8',
+        // };
+        // utilJs.drawPoint(pointParam);
         if($(ele.currentTarget).hasClass("onClick")){
-          $(ele.currentTarget).removeClass("onClick")
+          $(ele.currentTarget).removeClass("onClick");
+          this.map.off();
+          this.map.on("click",function(e){
+            L.marker([e.latlng.lat, e.latlng.lng], {icon: this.iconUrl}).addTo(this.map).bindPopup("I am a green leaf.");
+          });
         }else{
-          $(ele.currentTarget).addClass("onClick")
+          $(ele.currentTarget).addClass("onClick");
+          this.map.off();
         }
       }
     }

@@ -3,9 +3,17 @@
     <l-map @ready="getMap" class="leafLet_map_box"
            :zoom="zoom" :center="center" :options="options">
       <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
-      <l-marker :lat-lng="marker">
-        <l-popup :content="text"></l-popup>
-      </l-marker>
+      <l-layer-group id="draw_Layer">
+        <l-marker :lat-lng="marker" :icon="icon" :options="makerOption">
+          <l-popup :content="text"></l-popup>
+        </l-marker>
+<!--        <l-poly-line :lat-longs="lineGroup">-->
+<!--          <l-popup :content="text"></l-popup>-->
+<!--        </l-poly-line>-->
+<!--        <l-polygon :latLongs="marker">-->
+<!--          <l-popup :content="text"></l-popup>-->
+<!--        </l-polygon>-->
+      </l-layer-group>
     </l-map>
 <!--    <div class="test_getData" @click="getData">我是请求数据的按钮</div>-->
     <div v-if="if_tool">
@@ -15,7 +23,7 @@
 </template>
 
 <script>
-  import { LMap, LTileLayer, LMarker, LPopup } from 'vue2-leaflet';
+  import { LMap, LTileLayer, LMarker, LPopup,LLayerGroup,LPolyline,LPolygon } from 'vue2-leaflet';
   import TOOLMAIN from "@/components/mapComponent/tool/toolMain";
 
   export default {
@@ -23,7 +31,10 @@
     components: {
       LMap,
       LTileLayer,
+      LLayerGroup,
       LMarker,
+      LPolyline,
+      LPolygon,
       LPopup,
       TOOLMAIN
     },
@@ -36,10 +47,24 @@
         zoom: 13,
         center: L.latLng(47.413220, -1.219482),
         url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
-        // url: 'http://t{s}.tianditu.cn/img_w/wmts?service=wmts&request=GetTile&version=1.0.0&LAYER=img&tileMatrixSet=w&TileMatrix={z}&TileRow={y}&TileCol={x}&style=default&format=tiles',
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-        // attribution: '["0", "1", "2", "3", "4", "5", "6", "7"]',
+
         marker: L.latLng(47.413220, -1.219482),
+        icon:L.icon({
+          iconUrl: './tool/theme/img/location.png',
+          iconSize: [38, 95],
+          iconAnchor: [22, 94],
+          popupAnchor: [-3, -76]
+        }),
+        makerOption:{
+          icon:L.icon({
+            iconUrl: './tool/theme/img/location.png',
+            iconSize: [38, 95],
+            iconAnchor: [22, 94],
+            popupAnchor: [-3, -76]
+          })
+        },
+
         text: 'this is a marker',
         if_tool:true,//是否展示工具栏
         map: {}
