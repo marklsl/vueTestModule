@@ -31,3 +31,4 @@ npm install vue2-leaflet --save
 npm  install ol --save
 npm i element-ui --save
 npm install axios --save
+npm install jquery --save 
