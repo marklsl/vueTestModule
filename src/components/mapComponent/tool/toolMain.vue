@@ -1,7 +1,7 @@
 <template>
   <div class="tool_bar">
     <el-row class="btn_box">
-      <el-collapse class="tool_ele_box" v-model="activeNames" @change="handleChange">
+      <el-collapse class="tool_ele_box">
         <el-collapse-item class="tool_ele_btn" title="路径规划" name="tool_path">
           <TOOLPATH></TOOLPATH>
         </el-collapse-item>

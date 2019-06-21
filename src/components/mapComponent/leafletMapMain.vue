@@ -4,7 +4,8 @@
            :zoom="zoom" :center="center" :options="options">
       <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
       <l-layer-group id="draw_Layer">
-        <l-marker :lat-lng="marker" :icon="icon" :options="makerOption">
+        <l-marker :lat-lng="marker">
+          <l-icon :iconUrl="markerIcon.iconUrl" :iconSize="markerIcon.iconSize" :iconAnchor="markerIcon.iconAnchor" :popupAnchor="markerIcon.popupAnchor"></l-icon>
           <l-popup :content="text"></l-popup>
         </l-marker>
 <!--        <l-poly-line :lat-longs="lineGroup">-->
@@ -23,7 +24,7 @@
 </template>
 
 <script>
-  import { LMap, LTileLayer, LMarker, LPopup,LLayerGroup,LPolyline,LPolygon } from 'vue2-leaflet';
+  import { LMap, LTileLayer, LMarker, LPopup,LLayerGroup,LPolyline,LPolygon,LIcon } from 'vue2-leaflet';
   import TOOLMAIN from "@/components/mapComponent/tool/toolMain";
 
   export default {
@@ -36,7 +37,8 @@
       LPolyline,
       LPolygon,
       LPopup,
-      TOOLMAIN
+      TOOLMAIN,
+      LIcon
     },
     data () {
       return {
@@ -50,19 +52,16 @@
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
 
         marker: L.latLng(47.413220, -1.219482),
-        icon:L.icon({
-          iconUrl: './tool/theme/img/location.png',
-          iconSize: [38, 95],
-          iconAnchor: [22, 94],
-          popupAnchor: [-3, -76]
-        }),
-        makerOption:{
-          icon:L.icon({
-            iconUrl: './tool/theme/img/location.png',
-            iconSize: [38, 95],
-            iconAnchor: [22, 94],
-            popupAnchor: [-3, -76]
-          })
+        // iconUrl: require('./tool/theme/img/location.png'),
+        // iconSize: [32, 32],
+        // iconAnchor: [16, 30],
+        // popupAnchor: [0, -18],
+
+        markerIcon:{
+          iconUrl: require('./tool/theme/img/location.png'),
+          iconSize: [32, 32],
+          iconAnchor: [16, 30],
+          popupAnchor: [0, -18]
         },
 
         text: 'this is a marker',
