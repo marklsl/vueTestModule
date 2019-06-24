@@ -1,20 +1,21 @@
 <template>
   <div class="vue-leaflet">
-    <l-map @ready="getMap" class="leafLet_map_box"
+    <l-map @ready="setMap" class="leafLet_map_box"
            :zoom="zoom" :center="center" :options="options">
       <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
-      <l-layer-group id="draw_Layer">
-        <l-marker :lat-lng="marker">
-          <l-icon :iconUrl="markerIcon.iconUrl" :iconSize="markerIcon.iconSize" :iconAnchor="markerIcon.iconAnchor" :popupAnchor="markerIcon.popupAnchor"></l-icon>
-          <l-popup :content="text"></l-popup>
-        </l-marker>
+      <TOOLLAYERGROUP></TOOLLAYERGROUP>
+<!--      <l-layer-group id="draw_Layer">-->
+<!--        <l-marker :lat-lng="marker">-->
+<!--          <l-icon :iconUrl="markerIcon.iconUrl" :iconSize="markerIcon.iconSize" :iconAnchor="markerIcon.iconAnchor" :popupAnchor="markerIcon.popupAnchor"></l-icon>-->
+<!--          <l-popup :content="text"></l-popup>-->
+<!--        </l-marker>-->
 <!--        <l-poly-line :lat-longs="lineGroup">-->
 <!--          <l-popup :content="text"></l-popup>-->
 <!--        </l-poly-line>-->
 <!--        <l-polygon :latLongs="marker">-->
 <!--          <l-popup :content="text"></l-popup>-->
 <!--        </l-polygon>-->
-      </l-layer-group>
+<!--      </l-layer-group>-->
     </l-map>
 <!--    <div class="test_getData" @click="getData">我是请求数据的按钮</div>-->
     <div v-if="if_tool">
@@ -24,21 +25,22 @@
 </template>
 
 <script>
-  import { LMap, LTileLayer, LMarker, LPopup,LLayerGroup,LPolyline,LPolygon,LIcon } from 'vue2-leaflet';
+  import { LMap, LTileLayer, LMarker, LPopup,LPolyline,LPolygon,LIcon } from 'vue2-leaflet';
   import TOOLMAIN from "@/components/mapComponent/tool/toolMain";
+  import TOOLLAYERGROUP from "@/components/mapComponent/layerGroup/toolDraw";
 
   export default {
     name: 'VueLeaflet',
     components: {
       LMap,
       LTileLayer,
-      LLayerGroup,
       LMarker,
       LPolyline,
       LPolygon,
       LPopup,
       TOOLMAIN,
-      LIcon
+      LIcon,
+      TOOLLAYERGROUP
     },
     data () {
       return {
@@ -52,10 +54,6 @@
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
 
         marker: L.latLng(47.413220, -1.219482),
-        // iconUrl: require('./tool/theme/img/location.png'),
-        // iconSize: [32, 32],
-        // iconAnchor: [16, 30],
-        // popupAnchor: [0, -18],
 
         markerIcon:{
           iconUrl: require('./tool/theme/img/location.png'),
@@ -82,7 +80,7 @@
           })
           .catch(failResponse => {});
       },
-      getMap(map){
+      setMap(map){
         this.$store.dispatch("setMapName",map);
         this.$store.commit('setL',L);
       }
