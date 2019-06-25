@@ -1,8 +1,12 @@
 <template>
-  <l-marker :lat-lng="markerLocation">
-    <l-icon :iconUrl="markerIcon.iconUrl" :iconSize="markerIcon.iconSize" :iconAnchor="markerIcon.iconAnchor" :popupAnchor="markerIcon.popupAnchor"></l-icon>
-    <l-popup :content="text"></l-popup>
-  </l-marker>
+  <div class="marker_box">
+    <div class="marker_dis" v-for="markerSign in markerArr">
+      <l-marker :lat-lng="markerSign.latLng">
+        <l-icon :iconUrl="markerSign.markerIcon.iconUrl" :iconSize="markerSign.markerIcon.iconSize" :iconAnchor="markerSign.markerIcon.iconAnchor" :popupAnchor="markerSign.markerIcon.popupAnchor" />
+        <l-popup :content="markerSign.text"/>
+      </l-marker>
+    </div>
+  </div>
 </template>
 <script>
   import { LMarker, LPopup,LIcon } from 'vue2-leaflet';
@@ -16,18 +20,19 @@
     },
     data () {
       return {
-        markerLocation: L.latLng(47.413220, -1.219482),
-        markerIcon:{
-          iconUrl: require('@/components/mapComponent/tool/theme/img/location.png'),
-          iconSize: [32, 32],
-          iconAnchor: [16, 30],
-          popupAnchor: [0, -18]
-        },
-        text: 'this is a marker'
+        markerArr:[]
       }
     },
-    methods:{
-
+    methods:{},
+    computed: {
+      getarkerArr() {
+        return this.$store.state.markerArr;
+      }
+    },
+    watch: {
+      getarkerArr(val) {
+        this.markerArr=val;
+      }
     },
     mounted(){
     }

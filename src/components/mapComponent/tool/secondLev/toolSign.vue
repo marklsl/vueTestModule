@@ -32,15 +32,29 @@
         //   fillColor:'0.8',
         // };
         // utilJs.drawPoint(pointParam);
+        let _self=this;
+        let mapNew=_self.$store.getters.getMapFn;
         if($(ele.currentTarget).hasClass("onClick")){
           $(ele.currentTarget).removeClass("onClick");
-          this.map.off();
-          this.map.on("click",function(e){
-            L.marker([e.latlng.lat, e.latlng.lng], {icon: this.iconUrl}).addTo(this.map).bindPopup("I am a green leaf.");
-          });
+          mapNew.off();
         }else{
           $(ele.currentTarget).addClass("onClick");
-          this.map.off();
+          mapNew.off();
+          mapNew.on("click",function(e){
+            let oldMarkerArr=_self.$store.getters.getMarkerArrFn;
+            let eleMarker={
+              latLng:L.latLng(e.latlng.lat, e.latlng.lng),
+              markerIcon:{
+                iconUrl: require('@/components/mapComponent/tool/theme/img/location.png'),
+                iconSize: [32, 32],
+                iconAnchor: [16, 30],
+                popupAnchor: [0, -18]
+              },
+              text: 'this is a marker'
+            };
+            oldMarkerArr.push(eleMarker);
+            _self.$store.dispatch("setMarkerArr",oldMarkerArr);
+          });
         }
       }
     }

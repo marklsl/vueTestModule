@@ -8,6 +8,7 @@ let store = new Vuex.Store({
     city:"城市名",
     map:{},
     L:{},
+    markerArr:[]
   },
 
   // // 2. getters
@@ -21,6 +22,9 @@ let store = new Vuex.Store({
     },
     getLeafletFn(state){
       return state.L;
+    },
+    getMarkerArrFn(state){
+      return state.markerArr;
     }
   },
   // 3. mutations
@@ -36,6 +40,9 @@ let store = new Vuex.Store({
     setL(state, L){
       state.L = L;//将传参设置给state的city
     },
+    setMarkerArr(state, markerArr){
+      state.markerArr = markerArr;//将传参设置给state的city
+    }
   },
   // 4. actions
   // 通常跟api接口打交道
@@ -45,6 +52,9 @@ let store = new Vuex.Store({
     },
     setMapName({commit,state}, mapObj){
       commit("setMap", mapObj);
+    },
+    setMarkerArr({commit,state}, markerArr){
+      commit("setMarkerArr", markerArr);
     }
   },
 });
