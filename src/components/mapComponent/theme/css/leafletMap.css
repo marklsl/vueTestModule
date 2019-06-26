@@ -28,3 +28,6 @@
 .el-collapse-item__content{
   padding-bottom: 10px;
 }
+.move_cursor{
+  cursor:move;
+}

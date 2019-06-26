@@ -1,5 +1,10 @@
 <template>
-    <l-polyline :lat-lngs="lineGroup" :color="lineColor" />
+  <div class="line_box">
+    <div class="line_dis" v-for="lineSign in lineArr">
+      <l-polyline :lat-lngs="lineSign.lineGroup" :color="lineSign.lineColor" />
+    </div>
+    <l-polyline :lat-lngs="moveLine.lineGroup" :color="moveLine.lineColor" />
+  </div>
 </template>
 <script>
   import { LPolyline, LPopup } from 'vue2-leaflet';
@@ -12,18 +17,27 @@
     },
     data () {
       return {
-        lineGroup: [
-          [47.334852, -1.509485],
-          [47.342596, -1.328731],
-          [47.241487, -1.190568],
-          [47.234787, -1.358337]
-        ],
-        lineColor: "green",
-        text: 'this is a line'
+        lineArr:[],
+        moveLine:{
+          lineGroup: [
+            [47.334852, -1.509485],
+            [47.342596, -1.328731]
+          ],
+          lineColor: "green",
+          text: 'this is a line'
+        }
       }
     },
-    methods:{
-
+    methods:{},
+    computed: {
+      getLineArr() {
+        return this.$store.state.lineArr;
+      }
+    },
+    watch: {
+      getLineArr(val) {
+        this.lineArr=val;
+      }
     },
     mounted(){
     }

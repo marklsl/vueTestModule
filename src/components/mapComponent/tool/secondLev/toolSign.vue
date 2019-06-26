@@ -7,17 +7,18 @@
 </template>
 
 <script>
-  import { utilFunction } from '../../../../util/util.js'
   export default {
     name: 'toolSign',
     components: {
     },
     data () {
       return {
-        map:this.$store.getters.getMapFn,
+        linePoints:[],
+        lineNum:0,
       }
     },
     methods:{
+      //标绘的单击事件
       dynamicMapping:function(ele){
         //绘制点
         // let param={};
@@ -39,22 +40,67 @@
           mapNew.off();
         }else{
           $(ele.currentTarget).addClass("onClick");
+          $(".vue2leaflet-map").addClass("move_cursor");
           mapNew.off();
-          mapNew.on("click",function(e){
-            let oldMarkerArr=_self.$store.getters.getMarkerArrFn;
-            let eleMarker={
-              latLng:L.latLng(e.latlng.lat, e.latlng.lng),
-              markerIcon:{
-                iconUrl: require('@/components/mapComponent/tool/theme/img/location.png'),
-                iconSize: [32, 32],
-                iconAnchor: [16, 30],
-                popupAnchor: [0, -18]
-              },
-              text: 'this is a marker'
-            };
-            oldMarkerArr.push(eleMarker);
-            _self.$store.dispatch("setMarkerArr",oldMarkerArr);
-          });
+          if($(ele.currentTarget).attr("code")=="point"){//点击的是点
+            mapNew.on("click",function(e){
+              let oldMarkerArr=_self.$store.getters.getMarkerArrFn;
+              let eleMarker={
+                latLng:L.latLng(e.latlng.lat, e.latlng.lng),
+                markerIcon:{
+                  iconUrl: require('@/components/mapComponent/tool/theme/img/location.png'),
+                  iconSize: [32, 32],
+                  iconAnchor: [16, 30],
+                  popupAnchor: [0, -18]
+                },
+                text: 'this is a marker'
+              };
+              oldMarkerArr.push(eleMarker);
+              _self.$store.dispatch("setMarkerArr",oldMarkerArr);
+            });
+          }else if($(ele.currentTarget).attr("code")=="line") {//点击的是线
+            mapNew.on("click", function (e) {
+              if (_self.linePoints.length > 0) {//如果不是新开的一条线
+                _self.linePoints.push([e.latlng.lat, e.latlng.lng]);
+                let staticLineArr= _self.$store.getters.getStaticLineArrFn;
+                let lineEle = staticLineArr[_self.lineNum];//取没有完成绘制的线
+                let lineLatLngArr = lineEle.lineGroup;
+                lineLatLngArr.push([e.latlng.lat, e.latlng.lng]);
+              } else {//如果是线的起点
+                let staticLineArr = _self.$store.getters.getStaticLineArrFn;
+                let eleLine = {
+                  lineGroup: [
+                    [47.334852, -1.509485],
+                    [47.342596, -1.328731],
+                    [47.241487, -1.190568],
+                    [47.234787, -1.358337]
+                  ],
+                  lineColor: "green",
+                  text: 'this is a line'
+                }
+                staticLineArr.push(eleLine);
+              }
+            });
+            mapNew.on("mousemove", function (e) {
+              if (_self.linePoints.length > 0) {
+                let moveLine = {
+                  lineGroup: [self.linePoints[self.linePoints.length - 1], [e.latlng.lat, e.latlng.lng]],
+                  lineColor: "green",
+                  text: 'this is a line'
+                }
+                this.$store.dispatch("setMoveLineArr", moveLine);
+              }
+            })
+            mapNew.on("dblclick", function (e) {
+              let staticLineArr = _self.$store.getters.getStaticLineArrFn;
+              _self.lineNum=staticLineArr.length;
+              _self.linePoints = [];
+              map.off('mousemove')
+            })
+            // else if($(ele.currentTarget).code=="area"){
+            //
+            // }
+          }
         }
       }
     }

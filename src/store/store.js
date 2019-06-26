@@ -8,7 +8,9 @@ let store = new Vuex.Store({
     city:"城市名",
     map:{},
     L:{},
-    markerArr:[]
+    markerArr:[],
+    staticLineArr:[],
+    moveLineArr:{}
   },
 
   // // 2. getters
@@ -25,6 +27,12 @@ let store = new Vuex.Store({
     },
     getMarkerArrFn(state){
       return state.markerArr;
+    },
+    getStaticLineArrFn(state){
+      return state.staticLineArr;
+    },
+    getMoveLineArrFn(state){
+      return state.moveLineArr;
     }
   },
   // 3. mutations
@@ -42,6 +50,12 @@ let store = new Vuex.Store({
     },
     setMarkerArr(state, markerArr){
       state.markerArr = markerArr;//将传参设置给state的city
+    },
+    setStaticLineArr(state, staticLineArr){
+      state.staticLineArr = staticLineArr;//将传参设置给state的city
+    },
+    setMoveLineArr(state, moveLineArr){
+      state.moveLineArr = moveLineArr;//将传参设置给state的city
     }
   },
   // 4. actions
@@ -55,6 +69,12 @@ let store = new Vuex.Store({
     },
     setMarkerArr({commit,state}, markerArr){
       commit("setMarkerArr", markerArr);
+    },
+    setStaticLineArr({commit,state},staticLineArr){
+      commit("setStaticLineArr", staticLineArr);
+    },
+    setMoveLineArr({commit,state},moveLineArr){
+      commit("setMoveLineArr", moveLineArr);
     }
   },
 });
