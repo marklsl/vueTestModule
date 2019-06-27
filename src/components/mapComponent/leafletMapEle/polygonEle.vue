@@ -1,5 +1,9 @@
 <template>
-  <l-polygon :lat-lngs="polygonGroup" :color="polygonColor" />
+  <div class="area_box">
+    <div class="area_dis" v-for="areaSign in areaArr">
+      <l-polygon :lat-lngs="areaSign.polygonGroup" :color="areaSign.polygonColor" />
+    </div>
+  </div>
 </template>
 <script>
   import { LPolygon, LPopup } from 'vue2-leaflet';
@@ -12,21 +16,21 @@
     },
     data () {
       return {
-        polygonGroup: [
-          [47.2263299, -1.6222],
-          [47.21024000000001, -1.6270065],
-          [47.237287, -1.6266632],
-          [47.2263299, -1.6222]
-        ],
-        polygonColor: "#ff00ff",
-        text: 'this is a polygon'
+        areaArr:[]
       }
     },
-    methods:{
-
+    methods:{},
+    computed: {
+      getStartAreaArr() {
+        return this.$store.state.staticAreaArr;
+      }
     },
-    mounted(){
-    }
+    watch: {
+      getStartAreaArr(val) {
+        this.areaArr=val;
+      }
+    },
+    mounted(){}
   }
 </script>
 

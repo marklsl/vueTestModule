@@ -24,3 +24,15 @@
 .hideClass{
   display:none
 }
+.ele_tool div:not(:last-child){
+  border-bottom: 1px solid #e3e3e3;
+}
+.onClick{
+  color: aquamarine;
+}
+.el-collapse-item__header.is-active {
+  color: aquamarine !important;
+}
+.el-collapse-item__header:hover{
+  color: aquamarine !important;
+}

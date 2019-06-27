@@ -18,8 +18,8 @@
 .el-collapse-item__wrap{
   position: fixed;
   margin-top: 2px;
-  margin-left: -7px;
-  width: 79px;
+  margin-left: -5px;
+  width: 77px;
 }
 .el-collapse-item__header{
    height: auto;

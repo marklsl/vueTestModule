@@ -63,6 +63,6 @@
   }
 </script>
 
-<style scoped>
+<style>
   @import  'theme/css/toolBar.css';
 </style>
