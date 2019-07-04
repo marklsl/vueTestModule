@@ -10,7 +10,8 @@ let store = new Vuex.Store({
     L:{},
     markerArr:[],
     staticLineArr:[],
-    staticAreaArr:[]
+    staticAreaArr:[],
+    ifPop:false
   },
 
   // // 2. getters
@@ -33,6 +34,9 @@ let store = new Vuex.Store({
     },
     getStaticAreaArrFn(state){
       return state.staticAreaArr;
+    },
+    getIfPopFn(state){
+      return state.ifPop;
     }
   },
   // 3. mutations
@@ -40,22 +44,25 @@ let store = new Vuex.Store({
     // state指的是state的数据
     // name传递过来的数据
     setCity(state, name){
-      state.city = name;//将传参设置给state的city
+      state.city = name;
     },
     setMap(state, mapObj){
-      state.map = mapObj;//将传参设置给state的city
+      state.map = mapObj;
     },
     setL(state, L){
-      state.L = L;//将传参设置给state的city
+      state.L = L;
     },
     setMarkerArr(state, markerArr){
-      state.markerArr = markerArr;//将传参设置给state的city
+      state.markerArr = markerArr;
     },
     setStaticLineArr(state, staticLineArr){
-      state.staticLineArr = staticLineArr;//将传参设置给state的city
+      state.staticLineArr = staticLineArr;
     },
     setStaticAreaArr(state, staticArea){
-      state.staticAreaArr = staticArea;//将传参设置给state的city
+      state.staticAreaArr = staticArea;
+    },
+    setIfPop(state, ifPop){
+      state.ifPop = ifPop;
     }
   },
   // 4. actions
@@ -75,6 +82,9 @@ let store = new Vuex.Store({
     },
     setStaticAreaArr({commit,state},staticArea){
       commit("setStaticAreaArr", staticArea);
+    },
+    setIfPop({commit,state},ifPop){
+      commit("setIfPop", ifPop);
     }
   },
 });

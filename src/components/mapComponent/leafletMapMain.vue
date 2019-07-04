@@ -9,6 +9,9 @@
     <div v-if="if_tool">
       <TOOLMAIN></TOOLMAIN>
     </div>
+    <div v-if="if_pop">
+      <POP></POP>
+    </div>
   </div>
 </template>
 
@@ -16,6 +19,7 @@
   import { LMap, LTileLayer} from 'vue2-leaflet';
   import TOOLMAIN from "@/components/mapComponent/tool/toolMain";
   import TOOLLAYERGROUP from "@/components/mapComponent/layerGroup/toolDraw";
+  import POP from "@/components/popGroup/rightPopup";
 
   export default {
     name: 'VueLeaflet',
@@ -23,7 +27,8 @@
       LMap,
       LTileLayer,
       TOOLMAIN,
-      TOOLLAYERGROUP
+      TOOLLAYERGROUP,
+      POP
     },
     data () {
       return {
@@ -47,7 +52,8 @@
 
         text: 'this is a marker',
         if_tool:true,//是否展示工具栏
-        map: {}
+        map: {},
+        if_pop:false
       }
     },
     methods:{
@@ -69,7 +75,17 @@
       }
     },
     mounted(){
-    }
+    },
+    computed: {
+      getIfPop() {
+        return this.$store.state.ifPop;
+      }
+    },
+    watch: {
+      getIfPop(val) {
+        this.if_pop=val;
+      }
+    },
   }
 </script>
 

@@ -56,7 +56,7 @@
         }else{
           $(ele.currentTarget).addClass("onClick");
           $(".tool_ele_box").removeClass("hideClass");
-          $(".tool_ele_box").animate({width:"400px"});
+          $(".tool_ele_box").animate({width:"425px"});
         }
       }
     }
