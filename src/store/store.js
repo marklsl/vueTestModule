@@ -8,10 +8,10 @@ let store = new Vuex.Store({
     city:"城市名",
     map:{},
     L:{},
-    markerArr:[],
-    staticLineArr:[],
-    staticAreaArr:[],
-    ifPop:false
+    markerArr:[],//静态点数组
+    staticLineArr:[],//静态线数组
+    staticAreaArr:[],//静态面数组
+    ifPop:false//是否展示详情框
   },
 
   // // 2. getters

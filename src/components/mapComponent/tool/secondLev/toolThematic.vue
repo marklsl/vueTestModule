@@ -1,6 +1,8 @@
 <template>
   <div class="ele_tool">
-    <div>专题图</div>
+    <el-dropdown-menu slot="dropdown">
+      <el-dropdown-item>专题图</el-dropdown-item>
+    </el-dropdown-menu>
   </div>
 </template>
 

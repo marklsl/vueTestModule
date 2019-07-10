@@ -20,6 +20,7 @@
   import TOOLMAIN from "@/components/mapComponent/tool/toolMain";
   import TOOLLAYERGROUP from "@/components/mapComponent/layerGroup/toolDraw";
   import POP from "@/components/popGroup/rightPopup";
+  import {mapState} from 'vuex';
 
   export default {
     name: 'VueLeaflet',
@@ -52,8 +53,7 @@
 
         text: 'this is a marker',
         if_tool:true,//是否展示工具栏
-        map: {},
-        if_pop:false
+        map: {}
       }
     },
     methods:{
@@ -77,15 +77,8 @@
     mounted(){
     },
     computed: {
-      getIfPop() {
-        return this.$store.state.ifPop;
-      }
-    },
-    watch: {
-      getIfPop(val) {
-        this.if_pop=val;
-      }
-    },
+      ...mapState({if_pop:'ifPop'})
+    }
   }
 </script>
 

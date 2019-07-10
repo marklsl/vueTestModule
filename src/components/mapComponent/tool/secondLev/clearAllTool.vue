@@ -1,15 +1,13 @@
 <template>
   <div class="ele_tool">
-    <el-dropdown-menu slot="dropdown">
-      <el-dropdown-item>量测</el-dropdown-item>
-    </el-dropdown-menu>
+<!--    <div code="clearAllTool" @click="clearAllToolFun($event)">清空</div>-->
   </div>
 </template>
 
 <script>
 
   export default {
-    name: 'toolMeasure',
+    name: 'clearAllTool',
     components: {
     },
     data () {
@@ -17,6 +15,9 @@
       }
     },
     methods:{
+      clearAllToolFun:function(ele){
+
+      }
     }
   }
 </script>

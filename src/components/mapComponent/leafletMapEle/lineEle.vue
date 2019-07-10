@@ -7,6 +7,7 @@
 </template>
 <script>
   import { LPolyline, LPopup } from 'vue2-leaflet';
+  import {mapState} from 'vuex';
 
   export default {
     name: 'lineEle',
@@ -15,20 +16,11 @@
       LPopup
     },
     data () {
-      return {
-        lineArr:[]
-      }
+      return {}
     },
     methods:{},
     computed: {
-      getStartLineArr() {
-        return this.$store.state.staticLineArr;
-      }
-    },
-    watch: {
-      getStartLineArr(val) {
-        this.lineArr=val;
-      }
+      ...mapState({lineArr:'staticLineArr'})
     },
     mounted(){
     }

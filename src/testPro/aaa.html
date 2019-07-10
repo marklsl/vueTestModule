@@ -21,6 +21,7 @@
     }
   </style>
   <script>
+    let bb=11;
     $(function(){
       $(".content").mouseover(function(){
         $(this).stop().animate({
@@ -32,11 +33,22 @@
         });
       });
     })
+    function test(){
+      let aa=5;
+      let a= ()=>{
+        debugger
+        console.log(aa);
+        console.log(this.aa);
+        this.aa==="5"
+      }
+      alert(a());
+    }
   </script>
 </head>
 <body>
 <div class='content'>
-
+  不开心
 </div>
+<button onclick="test()">我是测试按钮</button>
 </body>
 </html>

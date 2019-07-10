@@ -1,23 +1,23 @@
 <template>
   <div class="tool_bar">
     <el-row class="btn_box">
-      <el-collapse class="tool_ele_box">
-        <el-collapse-item class="tool_ele_btn" title="路径规划" name="tool_path">
-          <TOOLPATH></TOOLPATH>
-        </el-collapse-item>
-        <el-collapse-item class="tool_ele_btn" title="专题图" name="tool_thematic">
-          <THEMATIC></THEMATIC>
-        </el-collapse-item>
-        <el-collapse-item class="tool_ele_btn" title="标记" name="tool_sign">
+      <div class="tool_ele_box">
+        <span class="tool_ele_btn el-dropdown-link">清空</span>
+          <span class="tool_ele_btn el-dropdown-link">路径规划</span>
+          <span class="tool_ele_btn el-dropdown-link">专题图</span>
+        <el-dropdown class="tool_ele_btn"  trigger="click">
+          <span class="el-dropdown-link">标记<i class="el-icon-arrow-down el-icon--right"></i></span>
           <SIGN></SIGN>
-        </el-collapse-item>
-        <el-collapse-item class="tool_ele_btn" title="量测" name="tool_measure">
+        </el-dropdown>
+        <el-dropdown class="tool_ele_btn"  trigger="click">
+          <span class="el-dropdown-link">量测<i class="el-icon-arrow-down el-icon--right"></i></span>
           <MEASURE></MEASURE>
-        </el-collapse-item>
-        <el-collapse-item class="tool_ele_btn" title="定位" name="tool_location">
+        </el-dropdown>
+        <el-dropdown class="tool_ele_btn"  trigger="click">
+          <span class="el-dropdown-link">定位<i class="el-icon-arrow-down el-icon--right"></i></span>
           <LOCATION></LOCATION>
-        </el-collapse-item>
-      </el-collapse>
+        </el-dropdown>
+      </div>
 
       <div class="grid-content bg-purple-light onClick" @click="openOrCloseTool($event)">
         <el-button class="tool_bar_control" type="success" icon="el-icon-s-cooperation" title="工具箱" circle></el-button>
@@ -33,6 +33,7 @@
   import SIGN from "@/components/mapComponent/tool/secondLev/toolSign"
   import MEASURE from "@/components/mapComponent/tool/secondLev/toolMeasure"
   import LOCATION from "@/components/mapComponent/tool/secondLev/toolLocation"
+  import CLEARALLTOOL from "@/components/mapComponent/tool/secondLev/clearAllTool"
   export default {
     name: 'tool_bar',
     components: {
@@ -40,7 +41,8 @@
       THEMATIC,
       SIGN,
       MEASURE,
-      LOCATION
+      LOCATION,
+      CLEARALLTOOL,
     },
     data () {
       return {
@@ -56,9 +58,15 @@
         }else{
           $(ele.currentTarget).addClass("onClick");
           $(".tool_ele_box").removeClass("hideClass");
-          $(".tool_ele_box").animate({width:"425px"});
+          $(".tool_ele_box").animate({width:"500px"});
         }
       }
+    },
+    mounted() {
+      $(".tool_ele_box").find(".el-dropdown-link").unbind("click").click(function(){
+        $(".tool_ele_box").find(".el-dropdown-link").removeClass("onClick");
+        $(this).addClass("onClick");
+      })
     }
   }
 </script>

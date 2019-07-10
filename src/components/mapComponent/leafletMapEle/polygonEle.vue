@@ -7,6 +7,7 @@
 </template>
 <script>
   import { LPolygon, LPopup } from 'vue2-leaflet';
+  import {mapState} from 'vuex';
 
   export default {
     name: 'polygonEle',
@@ -15,22 +16,12 @@
       LPopup
     },
     data () {
-      return {
-        areaArr:[]
-      }
+      return {}
     },
     methods:{},
     computed: {
-      getStartAreaArr() {
-        return this.$store.state.staticAreaArr;
-      }
-    },
-    watch: {
-      getStartAreaArr(val) {
-        this.areaArr=val;
-      }
-    },
-    mounted(){}
+      ...mapState({areaArr:'staticAreaArr'})
+    }
   }
 </script>
 

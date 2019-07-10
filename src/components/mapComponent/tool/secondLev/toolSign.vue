@@ -1,8 +1,16 @@
 <template>
   <div class="ele_tool">
-    <div code="point" @click="dynamicMapping($event)">标点</div>
-    <div code="line" @click="dynamicMapping($event)">标线</div>
-    <div code="area" @click="dynamicMapping($event)">标面</div>
+    <el-dropdown-menu slot="dropdown">
+      <el-dropdown-item>
+        <div code="point" @click="dynamicMapping($event)">标点</div>
+      </el-dropdown-item>
+      <el-dropdown-item>
+        <div code="line" @click="dynamicMapping($event)">标线</div>
+      </el-dropdown-item>
+      <el-dropdown-item>
+        <div code="area" @click="dynamicMapping($event)">标面</div>
+      </el-dropdown-item>
+    </el-dropdown-menu>
   </div>
 </template>
 
@@ -30,15 +38,22 @@
         let _self = this;
         let mapNew = _self.$store.getters.getMapFn;
         _self.removeMapEvent(mapNew);
-        $(ele.currentTarget).parent().find("div").removeClass("onClick");
-        $(ele.currentTarget).addClass("onClick");
-        let clickIni=_self.mapIni(mapNew);
-        if ($(ele.currentTarget).attr("code") == "point") {//点击的是点
-          clickIni.markerMapClick();
-        } else if ($(ele.currentTarget).attr("code") == "line") {//线标绘
-          clickIni.lineMapClick();
-        } else if ($(ele.currentTarget).attr("code") == "area") {//面标绘
-          clickIni.areaMapClick();
+        //如果点击的跟之前是同一个
+        if($(ele.currentTarget).parents().find("div[class=onClick]")){
+          if($(ele.currentTarget).attr("code")!=$(ele.currentTarget).parents().find("div[class=onClick]").attr("code")){
+            $(ele.currentTarget).parents().find("div").removeClass("onClick");
+            $(ele.currentTarget).addClass("onClick");
+            let clickIni=_self.mapIni(mapNew);
+            if ($(ele.currentTarget).attr("code") == "point") {//点击的是点
+              clickIni.markerMapClick();
+            } else if ($(ele.currentTarget).attr("code") == "line") {//线标绘
+              clickIni.lineMapClick();
+            } else if ($(ele.currentTarget).attr("code") == "area") {//面标绘
+              clickIni.areaMapClick();
+            }
+          }else{
+            $(ele.currentTarget).parents().find("div").removeClass("onClick");
+          }
         }
       },
       //地图监听

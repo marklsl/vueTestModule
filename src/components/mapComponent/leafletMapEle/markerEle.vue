@@ -10,6 +10,7 @@
 </template>
 <script>
   import { LMarker, LPopup,LIcon } from 'vue2-leaflet';
+  import {mapState} from 'vuex';
 
   export default {
     name: 'markerEle',
@@ -19,22 +20,11 @@
       LIcon
     },
     data () {
-      return {
-        markerArr:[]
-      }
+      return {}
     },
     methods:{},
     computed: {
-      getarkerArr() {
-        return this.$store.state.markerArr;
-      }
-    },
-    watch: {
-      getarkerArr(val) {
-        this.markerArr=val;
-      }
-    },
-    mounted(){
+      ...mapState({markerArr:'markerArr'})
     }
   }
 </script>

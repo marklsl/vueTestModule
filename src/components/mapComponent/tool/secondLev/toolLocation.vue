@@ -1,7 +1,13 @@
 <template>
   <div class="ele_tool">
-    <div code="latLngLocation" @click="locationFun($event)">经纬度定位</div>
-    <div code="nameLocation" @click="locationFun($event)">地名定位</div>
+    <el-dropdown-menu slot="dropdown">
+      <el-dropdown-item>
+        <div code="latLngLocation" @click="locationFun($event)">经纬度定位</div>
+      </el-dropdown-item>
+      <el-dropdown-item>
+        <div code="nameLocation" @click="locationFun($event)">地名定位</div>
+      </el-dropdown-item>
+    </el-dropdown-menu>
   </div>
 </template>
 

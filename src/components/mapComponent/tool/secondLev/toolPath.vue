@@ -1,6 +1,8 @@
 <template>
   <div class="ele_tool">
-    <div>路径规划</div>
+    <el-dropdown-menu slot="dropdown">
+      <el-dropdown-item>路径规划</el-dropdown-item>
+    </el-dropdown-menu>
   </div>
 </template>
 
