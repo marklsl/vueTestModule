@@ -36,7 +36,7 @@
       //标绘的单击事件
       dynamicMapping: function (ele) {
         let _self = this;
-        let mapNew = _self.$store.getters.getMapFn;
+        let mapNew = _self.$store.getters["mainStore/getMapFn"];
         _self.removeMapEvent(mapNew);
         //如果点击的跟之前是同一个
         if($(ele.currentTarget).parents().find("div[class=onClick]")){
@@ -63,7 +63,7 @@
         //绘制图片时候的监听
         util.markerMapClick=function(){
           mapNew.on("click markerAdd", function (e) {
-            let oldMarkerArr = _self.$store.getters.getMarkerArrFn;
+            let oldMarkerArr = _self.$store.getters["signStore/getMarkerArrFn"];
             let eleMarker = {
               latLng: L.latLng(e.latlng.lat, e.latlng.lng),
               markerIcon: {
@@ -75,14 +75,14 @@
               text: 'this is a marker'
             };
             oldMarkerArr.push(eleMarker);
-            _self.$store.dispatch("setMarkerArr", oldMarkerArr);
+            _self.$store.dispatch("signStore/setMarkerArr", oldMarkerArr);
           });
         };
         //绘制线的时候的监听
         util.lineMapClick=function(){
           mapNew.on("click lineAdd", function (e) {
             _self.linePoints.push([e.latlng.lat, e.latlng.lng]);
-            _self.staticLineArr = _self.$store.getters.getStaticLineArrFn;
+            _self.staticLineArr = _self.$store.getters["signStore/getStaticLineArrFn"];
             if (_self.linePoints.length > 1) {//如果不是新开的一条线
               let lineEle = _self.staticLineArr[_self.lineNum];//取没有完成绘制的线
               let lineLatLngArr = lineEle.lineGroup;
@@ -106,7 +106,7 @@
         util.areaMapClick=function(){
           mapNew.on("click areaAdd", function (e) {
             _self.areaPoints.push([e.latlng.lat, e.latlng.lng]);
-            _self.staticAreaArr = _self.$store.getters.getStaticAreaArrFn;
+            _self.staticAreaArr = _self.$store.getters["signStore/getStaticAreaArrFn"];
             if (_self.areaPoints.length > 1) {//如果不是新开的一个面
               let areaEle = _self.staticAreaArr[_self.areaNum];//取没有完成绘制的面
               let areaLatLngArr = areaEle.polygonGroup;
@@ -144,7 +144,7 @@
       },
       //线结束绘制
       stopDrawLine:function(map){
-        this.staticLineArr = this.$store.getters.getStaticLineArrFn;
+        this.staticLineArr = this.$store.getters["signStore/getStaticLineArrFn"];
         this.lineNum = this.staticLineArr.length;
         this.linePoints = [];
         this.isFirstLinePoint = true;
@@ -166,7 +166,7 @@
       },
       //面结束绘制
       stopDrawArea:function(map){
-        this.staticAreaArr = this.$store.getters.getStaticAreaArrFn;
+        this.staticAreaArr = this.$store.getters["signStore/getStaticAreaArrFn"];
         this.areaNum = this.staticAreaArr.length;
         this.areaPoints = [];
         this.isFirstAreaPoint = true;

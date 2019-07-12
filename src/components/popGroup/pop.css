@@ -25,4 +25,19 @@
   line-height: 48px;
   color: #737373;
   text-shadow: 2px 4px 2px #e3e3e3;
+  font-weight: 600;
 }
+.latlng_location_ele_box{
+  display: -webkit-box;
+  margin: 5px 0px 1px 40px;
+}
+.latlng_location_text{
+  line-height: 54px;
+  display: -webkit-box;
+  margin-right: 20px;
+}
+.right_pop_button{
+  margin-top: -20px;
+  float: right;
+}
+

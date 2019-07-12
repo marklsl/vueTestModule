@@ -24,7 +24,9 @@
     },
     methods:{},
     computed: {
-      ...mapState({markerArr:'markerArr'})
+      ...mapState("signStore",
+        {markerArr:state => state.markerArr}
+        )
     }
   }
 </script>

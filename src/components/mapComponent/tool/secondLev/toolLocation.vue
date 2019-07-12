@@ -27,9 +27,9 @@
         $(ele.currentTarget).parent().find("div").removeClass("onClick");
         $(ele.currentTarget).addClass("onClick");
         if ($(ele.currentTarget).attr("code") == "latLngLocation") {//点击的是经纬度定位
-          this.$store.dispatch("setIfPop",true);
+          this.$store.dispatch("popStore/setIfPop",true);
         } else if ($(ele.currentTarget).attr("code") == "nameLocation") {//点击的是地名地址定位
-          this.$store.dispatch("setIfPop",true);
+          this.$store.dispatch("popStore/setIfPop",true);
         }
       }
     }

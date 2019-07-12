@@ -20,7 +20,9 @@
     },
     methods:{},
     computed: {
-      ...mapState({lineArr:'staticLineArr'})
+      ...mapState("signStore",
+        {lineArr:state => state.staticLineArr}
+        )
     },
     mounted(){
     }

@@ -4,8 +4,8 @@
       <TOOLLINE></TOOLLINE>
       <TOOLMARKER></TOOLMARKER>
       <TOOLPOLYGON></TOOLPOLYGON>
-      <TOOLCIRCLE></TOOLCIRCLE>
-      <TOOLRECTANGLE></TOOLRECTANGLE>
+<!--      <TOOLCIRCLE></TOOLCIRCLE>-->
+<!--      <TOOLRECTANGLE></TOOLRECTANGLE>-->
     </l-layer-group>
   </div>
 </template>

@@ -20,7 +20,9 @@
     },
     methods:{},
     computed: {
-      ...mapState({areaArr:'staticAreaArr'})
+      ...mapState("signStore",
+        {areaArr:state => state.staticAreaArr}
+      )
     }
   }
 </script>

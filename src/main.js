@@ -4,11 +4,10 @@
 import Vue from 'vue'
 import ElementUI from 'element-ui' //新添加
 import 'element-ui/lib/theme-chalk/index.css' //新添加
-import VueX from 'vuex'
 import * as Vue2Leaflet from 'vue2-leaflet'
 import App from './App'
 import router from './router'
-import store from './store/store.js';
+import store from './store/rootStore';
 import 'leaflet/dist/leaflet.css';
 import $ from 'jquery';
 
@@ -20,7 +19,6 @@ Vue.prototype.$axios = axios
 
 Vue.config.productionTip = false
 
-Vue.use(VueX);
 Vue.use(ElementUI);
 Vue.use(Vue2Leaflet);
 

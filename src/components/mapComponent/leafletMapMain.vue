@@ -37,21 +37,10 @@
           attributionControl:false,
           zoomControl:false
         },
-        zoom: 13,
-        center: L.latLng(47.413220, -1.219482),
+        zoom: 7,
+        center: L.latLng(34.346554, 108.952789),
         url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-
-        marker: L.latLng(47.413220, -1.219482),
-
-        markerIcon:{
-          iconUrl: require('./tool/theme/img/location.png'),
-          iconSize: [32, 32],
-          iconAnchor: [16, 30],
-          popupAnchor: [0, -18]
-        },
-
-        text: 'this is a marker',
         if_tool:true,//是否展示工具栏
         map: {}
       }
@@ -70,14 +59,25 @@
           .catch(failResponse => {});
       },
       setMap(map){
-        this.$store.dispatch("setMapName",map);
-        this.$store.commit('setL',L);
+        window.map=map;
+        this.$store.dispatch("mainStore/setMapName",map);
+        this.$store.commit('mainStore/setL',L);
+        // map.on('whenReady',function(){
+        //   // setTimeout(
+        //   //   function() {
+        //       map.panTo(new L.LatLng(39.916485, 116.405994), {
+        //         animate: true,
+        //         duration: 0.5
+        //       })
+        //     // },200)
+        // })
       }
     },
-    mounted(){
-    },
+    mounted(){},
     computed: {
-      ...mapState({if_pop:'ifPop'})
+      ...mapState("popStore",{
+        if_pop: state => state.ifPop
+      })
     }
   }
 </script>
