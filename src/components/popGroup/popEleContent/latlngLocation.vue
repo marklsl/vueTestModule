@@ -24,6 +24,16 @@
       }
     },
     methods:{
+      rightPopCallBackFun:function(){
+        debugger
+        let lng=this.inputLng;
+        let lat=this.inputLat;
+        let mapNew = this.$store.getters["mainStore/getMapFn"];
+        mapNew.panTo(new L.LatLng(lat, lng), {
+          animate: true,
+          duration: 0.5
+        })
+      }
     },
   }
 </script>

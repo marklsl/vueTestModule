@@ -53,16 +53,16 @@ export default{
       commit("setIfPop", ifPop);
     },
     setTitleNamePop({commit,state},titleName){
-      commit("titleName", titleName);
+      commit("setTitleNamePop", titleName);
     },
     setTextContentCodePop({commit,state},textContentCode){
-      commit("textContentCode", textContentCode);
+      commit("setTextContentCodePop", textContentCode);
     },
     setButtonNamePop({commit,state},buttonName){
-      commit("buttonName", buttonName);
+      commit("setButtonNamePop", buttonName);
     },
     setDtClassPop({commit,state},dtClass){
-      commit("dtClass", dtClass);
+      commit("setDtClassPop", dtClass);
     }
 
   }

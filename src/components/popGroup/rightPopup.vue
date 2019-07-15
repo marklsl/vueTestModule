@@ -5,10 +5,10 @@
     </div>
     <div class="pop_content">
       <div v-if="bouncedContent=='latlngLocation'">
-        <LATLNGLOCATION></LATLNGLOCATION>
+        <LATLNGLOCATION ref="mychild"></LATLNGLOCATION>
       </div>
     </div>
-    <el-button type="success" class="right_pop_button">{{buttonName}}</el-button>
+    <el-button type="success" class="right_pop_button" @click="btnCallFun">{{buttonName}}</el-button>
   </div>
 </template>
 
@@ -25,6 +25,9 @@
       }
     },
     methods:{
+      btnCallFun:function(){
+        this.$refs.mychild.rightPopCallBackFun();
+      }
     },
     computed: {
       ...mapState("popStore",

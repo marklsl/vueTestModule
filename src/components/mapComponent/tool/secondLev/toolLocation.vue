@@ -28,6 +28,10 @@
         $(ele.currentTarget).addClass("onClick");
         if ($(ele.currentTarget).attr("code") == "latLngLocation") {//点击的是经纬度定位
           this.$store.dispatch("popStore/setIfPop",true);
+          this.$store.dispatch("popStore/setTitleNamePop","经纬度定位");
+          this.$store.dispatch("popStore/setTextContentCodePop","latlngLocation");
+          this.$store.dispatch("popStore/setButtonNamePop","定位");
+          this.$store.dispatch("popStore/setDtClassPop","mr_height_width");
         } else if ($(ele.currentTarget).attr("code") == "nameLocation") {//点击的是地名地址定位
           this.$store.dispatch("popStore/setIfPop",true);
         }
