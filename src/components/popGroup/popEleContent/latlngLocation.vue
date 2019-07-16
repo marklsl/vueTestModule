@@ -2,12 +2,14 @@
   <div class="latlng_location_content">
     <div class="latlng_location_ele_box">
       <span class="latlng_location_text">经度:</span>
-      <el-input placeholder="请输入经度,范围<73.66666~135.0416666>" v-model="inputLng"  class="latlng_location_input" oninput = "value=value.replace(/[^\d.]/g,'')"></el-input>
+      <el-input code="inputLngCode" placeholder="请输入经度,范围<73.67~135.04>" @blur="loseBlueFun($event)" v-model="inputLng"  class="latlng_location_input" oninput = "value=value.replace(/[^\d.]/g,'')"></el-input>
+      <div class="latlng_location_ele_error">*请输入国界范围内经度</div>
     </div>
 
     <div class="latlng_location_ele_box">
      <span class="latlng_location_text">纬度:</span>
-      <el-input placeholder="请输入纬度,范围<3.8666666~53.55>" v-model="inputLat" class="latlng_location_input" oninput = "value=value.replace(/[^\d.]/g,'')"></el-input>
+      <el-input code="inputLatCode" placeholder="请输入纬度,范围<3.87~53.55>"  @blur="loseBlueFun($event)" v-model="inputLat" class="latlng_location_input" oninput = "value=value.replace(/[^\d.]/g,'')"></el-input>
+      <div class="latlng_location_ele_error">*请输入国界范围内纬度</div>
     </div>
   </div>
 </template>
@@ -24,21 +26,33 @@
       }
     },
     methods:{
+      //输入框失去焦点事件
+      loseBlueFun:function(ele){
+        if($(ele.currentTarget).attr("code")=="inputLngCode"){
+          if(this.inputLng*1>135.04||this.inputLng*1<73.67){
+            $(ele.currentTarget).parent().next().show();
+          }else{
+            $(ele.currentTarget).parent().next().hide();
+          }
+        }else{
+          if(this.inputLat*1>53.55||this.inputLat*1<3.87){
+            $(ele.currentTarget).parent().next().show();
+          }else{
+            $(ele.currentTarget).parent().next().hide();
+          }
+        }
+      },
+      //按钮点击事件
       rightPopCallBackFun:function(){
         let lng=this.inputLng;
         let lat=this.inputLat;
-        if(lng*1>135.0416666||lng*1<73.66666){
-          alert("请输入国界范围内经度");
-          return;
-        }else if(lat*1>53.55||lat*1<3.8666666){
-          alert("请输入国界范围内纬度")
-          return;
+        if(!(this.inputLng*1>135.04||this.inputLng*1<73.67||this.inputLat*1>53.55||this.inputLat*1<3.87)){
+          let mapNew = this.$store.getters["mainStore/getMapFn"];
+          mapNew.panTo(new L.LatLng(lat, lng), {
+            animate: true,
+            duration: 0.5
+          })
         }
-        let mapNew = this.$store.getters["mainStore/getMapFn"];
-        mapNew.panTo(new L.LatLng(lat, lng), {
-          animate: true,
-          duration: 0.5
-        })
       }
     },
   }
