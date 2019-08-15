@@ -2,7 +2,12 @@ export default{
   namespaced:true,//限定命名空间
   // 1. state
   state: {
-    markerArr: [],//静态点数组
+    markerArr: {
+      tool:{
+        sign:[],
+        location:[],
+      }
+    },//静态点数组
     staticLineArr: [],//静态线数组
     staticAreaArr: []//静态面数组
   },

@@ -74,7 +74,7 @@
               },
               text: 'this is a marker'
             };
-            oldMarkerArr.push(eleMarker);
+            oldMarkerArr.tool.sign.push(eleMarker);
             _self.$store.dispatch("signStore/setMarkerArr", oldMarkerArr);
           });
         };

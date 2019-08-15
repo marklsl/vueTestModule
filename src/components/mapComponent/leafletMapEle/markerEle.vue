@@ -25,7 +25,7 @@
     methods:{},
     computed: {
       ...mapState("signStore",
-        {markerArr:state => state.markerArr}
+        {markerArr:state => state.markerArr.tool.sign.concat(state.markerArr.tool.location)}
         )
     }
   }

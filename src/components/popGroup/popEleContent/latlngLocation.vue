@@ -48,10 +48,29 @@
         let lat=this.inputLat;
         if(!(this.inputLng*1>135.04||this.inputLng*1<73.67||this.inputLat*1>53.55||this.inputLat*1<3.87)){
           let mapNew = this.$store.getters["mainStore/getMapFn"];
-          mapNew.panTo(new L.LatLng(lat, lng), {
+          mapNew.panTo(new L.LatLng(39.99533655479004,116.51018142700197), {
             animate: true,
             duration: 0.5
           })
+          //绘制点图片
+          let oldMarkerArr = this.$store.getters["signStore/getMarkerArrFn"];
+          let eleMarker = {
+            latLng: L.latLng(39.99533655479004,116.51018142700197),
+            markerIcon: {
+              iconUrl: require('@/components/mapComponent/tool/theme/img/nameLocation.png'),
+              iconSize: [32, 45],
+              iconAnchor: [17, 50],
+              popupAnchor: [0, -18]
+            },
+            text: 'this is a marker'
+          };
+          oldMarkerArr.tool.location=[];
+          oldMarkerArr.tool.location.push(eleMarker);
+          this.$store.dispatch("signStore/setMarkerArr", oldMarkerArr);
+
+          mapNew.on("click testLocation", function (e) {
+            console.log(e.latlng.lat+","+e.latlng.lng)
+          });
         }
       }
     },
