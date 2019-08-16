@@ -6,9 +6,10 @@
         <span class="tool_ele_btn el-dropdown-link" code="TOOLPATH">路径规划
           <TOOLPATH ref="TOOLPATH"></TOOLPATH>
         </span>
-        <span class="tool_ele_btn el-dropdown-link" code="THEMATIC">专题图
-          <THEMATIC ref="THEMATIC"></THEMATIC>
-        </span>
+        <el-dropdown class="tool_ele_btn" trigger="click" :hide-on-click="false">
+          <span class="el-dropdown-link" code="THEMATIC">专题图<i class="el-icon-arrow-down el-icon--right"></i></span>
+            <THEMATIC ref="THEMATIC"></THEMATIC>
+        </el-dropdown>
         <el-dropdown class="tool_ele_btn" trigger="click" :hide-on-click="false">
           <span class="el-dropdown-link" code="SIGN">标记<i class="el-icon-arrow-down el-icon--right"></i></span>
           <SIGN ref="SIGN"></SIGN>

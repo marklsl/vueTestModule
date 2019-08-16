@@ -27,7 +27,6 @@
       ...mapState("signStore",
           {
               markerArr: function (state) {
-                  debugger
                   return state.markerArr.tool.sign.concat(state.markerArr.tool.location)
               }
           }

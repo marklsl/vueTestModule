@@ -7,12 +7,16 @@
       <el-dropdown-item>
         <div code="dynamic" @click="dynamicThematic()">动态</div>
       </el-dropdown-item>
+      <div v-if="code==1">
+
+      </div>
     </el-dropdown-menu>
   </div>
 </template>
 
 <script>
-
+    // import STATICTHEMATIC from "@/mapComponent/tool/secondLev/thematic/staticThematic"
+    // import DYNAMICTHEMATIC from "@/mapComponent/tool/secondLev/thematic/dynamicThematic"
     export default {
         name: 'toolThematic',
         components: {},
