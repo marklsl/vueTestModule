@@ -8,8 +8,16 @@ export default{
         location:[],
       }
     },//静态点数组
-    staticLineArr: [],//静态线数组
-    staticAreaArr: []//静态面数组
+    staticLineArr: {
+      tool:{
+        sign:[]
+      }
+    },//静态线数组
+    staticAreaArr: {
+      tool:{
+        sign:[]
+      }
+    }//静态面数组
   },
 
   // // 2. getters

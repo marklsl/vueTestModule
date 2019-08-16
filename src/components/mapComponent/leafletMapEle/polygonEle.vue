@@ -21,7 +21,7 @@
     methods:{},
     computed: {
       ...mapState("signStore",
-        {areaArr:state => state.staticAreaArr}
+        {areaArr:state => state.staticAreaArr.tool.sign}
       )
     }
   }

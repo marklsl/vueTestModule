@@ -13,39 +13,44 @@
 
 <script>
 
-  export default {
-    name: 'toolLocation',
-    components: {
-    },
-    data () {
-      return {
-        hasPop:false
-      }
-    },
-    methods:{
-      locationFun:function(ele){
-        //如果点击的跟之前是同一个
-        if($(ele.currentTarget).parents().find("div[class=onClick]")){
-          if($(ele.currentTarget).attr("code")!=$(ele.currentTarget).parents().find("div[class=onClick]").attr("code")){
-            $(ele.currentTarget).parents().find("div").removeClass("onClick");
-            $(ele.currentTarget).addClass("onClick");
-            if ($(ele.currentTarget).attr("code") == "latLngLocation") {//点击的是经纬度定位
-              this.$store.dispatch("popStore/setIfPop",true);
-              this.$store.dispatch("popStore/setTitleNamePop","经纬度定位");
-              this.$store.dispatch("popStore/setTextContentCodePop","latlngLocation");
-              this.$store.dispatch("popStore/setButtonNamePop","定位");
-              this.$store.dispatch("popStore/setDtClassPop","mr_height_width");
-            } else if ($(ele.currentTarget).attr("code") == "nameLocation") {//点击的是地名地址定位
-              this.$store.dispatch("popStore/setIfPop",true);
+    export default {
+        name: 'toolLocation',
+        components: {},
+        data() {
+            return {
+                hasPop: false
             }
-          }else{
-            $(ele.currentTarget).parents().find("div").removeClass("onClick");
-            this.$store.dispatch("popStore/setIfPop",false);
-          }
+        },
+        methods: {
+            locationFun: function (ele) {
+                //如果点击的跟之前是同一个
+                if ($(ele.currentTarget).parents().find("div[class=onClick]")) {
+                    if ($(ele.currentTarget).attr("code") != $(ele.currentTarget).parents().find("div[class=onClick]").attr("code")) {
+                        $(ele.currentTarget).parents().find("div").removeClass("onClick");
+                        $(ele.currentTarget).addClass("onClick");
+                        if ($(ele.currentTarget).attr("code") == "latLngLocation") {//点击的是经纬度定位
+                            this.$store.dispatch("popStore/setIfPop", true);
+                            this.$store.dispatch("popStore/setTitleNamePop", "经纬度定位");
+                            this.$store.dispatch("popStore/setTextContentCodePop", "latlngLocation");
+                            this.$store.dispatch("popStore/setButtonNamePop", "定位");
+                            this.$store.dispatch("popStore/setDtClassPop", "mr_height_width");
+                        } else if ($(ele.currentTarget).attr("code") == "nameLocation") {//点击的是地名地址定位
+                            this.$store.dispatch("popStore/setIfPop", true);
+                        }
+                    } else {
+                        $(ele.currentTarget).parents().find("div").removeClass("onClick");
+                        this.$store.dispatch("popStore/setIfPop", false);
+                    }
+                }
+            },
+            //移除本模块的地图监听
+            removeEvent: function () {
+                let map = this.$store.getters["mainStore/getMapFn"];
+            },
+            //关闭功能，清除所有绘制
+            clearModel: function () {
+                this.removeEvent();
+            }
         }
-
-
-      }
     }
-  }
 </script>
