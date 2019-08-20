@@ -46,18 +46,6 @@
       }
     },
     methods:{
-      getData : function(){
-        console.log("我是请求接口");
-        this.$axios
-          .get('/user/aaa')
-          .then(successResponse => {
-            this.responseResult = JSON.stringify(successResponse.data)
-            if (successResponse.data.code === 200) {
-              // this.$router.replace({path: '/index'})
-            }
-          })
-          .catch(failResponse => {});
-      },
       setMap(map){
         window.map=map;
         this.$store.dispatch("mainStore/setMapName",map);

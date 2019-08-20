@@ -8,25 +8,29 @@
         <div code="dynamic" @click="dynamicThematic()">动态</div>
       </el-dropdown-item>
       <div v-if="code==1">
-
+        <STATICTHEMATIC></STATICTHEMATIC>
       </div>
     </el-dropdown-menu>
   </div>
 </template>
 
 <script>
-    // import STATICTHEMATIC from "@/mapComponent/tool/secondLev/thematic/staticThematic"
+    import STATICTHEMATIC from "@/mapComponent/tool/secondLev/thematic/staticThematic"
     // import DYNAMICTHEMATIC from "@/mapComponent/tool/secondLev/thematic/dynamicThematic"
     export default {
         name: 'toolThematic',
-        components: {},
+        components: {
+            STATICTHEMATIC
+        },
         data() {
-            return {}
+            return {
+                code:0
+            }
         },
         methods: {
             //静态截取
             staticThematic: function () {
-
+              this.code=1;
             },
             //动态截取
             dynamicThematic: function () {

@@ -43,19 +43,14 @@
         </div>
       </div>
     </div>
-    <div class="hide_box">{{isChange}}</div>
   </div>
 </template>
 <script>
     import html2canvas from 'html2canvas';
     import canvasToImage from 'canvas2image';
     import {
-        setScreenshots,
-        getTaskListData,
-        getSingleScreenshots,
-        sendAddFile,
-        sendUpdateFile
-    } from "../../api/satellite";
+        getData
+    } from "../../../../../assets/js/api/interface";
     import {mapState} from 'vuex';
 
     export default {
@@ -75,87 +70,21 @@
             };
         },
         methods: {
-            hideModel() {
-                let noHideId = ["GEOVISContainer"]
-                let noHideClass = ["boder screenshots"]
-                let arr = $(".el-container>div");
-                for (let i = 0; i < arr.length; i++) {
-                    let code = false;
-                    //不需要隐藏的id
-                    for (let j = 0; j < noHideId.length; j++) {
-                        if ($(arr[i]).attr("id") == noHideId[j]) {
-                            code = true;
-                            break;
-                        }
-                    }
-                    if (!code) {
-                        //不需要隐藏的id
-                        for (let n = 0; n < noHideClass.length; n++) {
-                            if ($(arr[i]).hasClass(noHideClass[n])) {
-                                code = true;
-                                break;
-                            }
-                        }
-                        if (!code) {
-                            if ($(arr[i]).css("display") != "none") {
-                                this.needDis.push($(arr[i]).attr("class"));
-                            }
-                            $(arr[i]).hide();
-                        }
-
-                    }
+            //测试数据
+            async getAllData(){
+                const resultData = await getData();
+                if (resultData.status == 200) {
+                    debugger
                 }
-                //将默认值置空
-                for (let key in this.needEmpty) {
-                    if (key == "screenShotsTime") {
-                        this.needEmpty[key] = new Date();
-                    } else {
-                        this.needEmpty[key] = "";
-                    }
-                }
-                this.taskNameFun();
             },
-            //获取任务名称
-            async taskNameFun() {
-                const taskList = await getTaskListData();
-                this.allTask = taskList.data;
-                let ele = {
-                    name: "请选择",
-                    id: 0
-                }
-                this.allTask.unshift(ele);
+            hideModel() {
 
             },
             //编辑页面
             async getSingleScreenshotsFun(id) {
-                await getSingleScreenshots(id).then(resultData => {
-                    if (resultData.status == 200) {
-                        this.needEmpty.screenShotsTime = resultData.data.time;
-                        this.needEmpty.screenShotsTitle = resultData.data.title;
-                        this.needEmpty.taskValue = resultData.data.urgentReqId;
-                        this.needEmpty.screenShotsTextarea = resultData.data.remark;
-                        this.needEmpty.id = resultData.data.id;
-                    }
-                });
             },
             //存储专题图
             screenShots() {
-                //非空判断
-                if (!this.needEmpty.screenShotsTitle) {
-                    this.$message({
-                        message: '请填写报告标题',
-                        type: 'warning',
-                        duration: '1000'
-                    });
-                } else if (!this.needEmpty.screenShotsTime) {
-                    this.$message({
-                        message: '请选择报告时间',
-                        type: 'warning',
-                        duration: '1000'
-                    });
-                } else {
-                    this.getOuterImg();
-                }
             },
             //获取整个图片
             getOuterImg() {
@@ -295,23 +224,9 @@
                 }
             }
         },
-        computed: {
-            ...mapState({
-                isChange: function (state) {
-                    if (state.screenshots.updateId) {
-                        let resultData = this.getSingleScreenshotsFun(state.screenshots.updateId);
-                        //需将查询出的数据替换到dom
-                        if (resultData.status = "200") {
-                            //将updateId置空
-                            let screenshots = this.$store.getters.screenshots;
-                            screenshots.updateId = "";
-                        }
-
-                    }
-                }
-            })
-        },
+        computed: {},
         mounted() {
+          this.getAllData();
         }
     };
 </script>
