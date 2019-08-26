@@ -15,7 +15,7 @@
 </template>
 
 <script>
-    import STATICTHEMATIC from "@/mapComponent/tool/secondLev/thematic/staticThematic"
+    import STATICTHEMATIC from "@/components/mapComponent/tool/secondLev/thematic/staticThematic"
     // import DYNAMICTHEMATIC from "@/mapComponent/tool/secondLev/thematic/dynamicThematic"
     export default {
         name: 'toolThematic',

@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/mapComponent/tool/secondLev/thematic/test'
-// import HelloWorld from '@/components/HelloWorld'
+import HelloWorld from '@/components/HelloWorld'
 import testRoute from '@/components/routeMain/testRoute'
 import leafletMap from '@/components/mapComponent/leafletMapMain'
 

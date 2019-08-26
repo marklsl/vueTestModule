@@ -48,10 +48,7 @@
 <script>
     import html2canvas from 'html2canvas';
     import canvasToImage from 'canvas2image';
-    import {
-        getData
-    } from "../../../../../assets/js/api/interface";
-    import {mapState} from 'vuex';
+    import {getData} from "../../../../../assets/js/api/interface";
 
     export default {
         name: "screenshotsStatic",
@@ -230,6 +227,6 @@
         }
     };
 </script>
-<style lang="scss">
-  @import "/css/style.css";
+<style>
+  @import "theme/css/style.css";
 </style>
