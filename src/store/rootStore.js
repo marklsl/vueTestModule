@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import mainStore from "./mainStore";
 import signStore from "./signStore";
 import popStore from "./popStore";
+import thematic from "./thematic";
 
 Vue.use(Vuex);
 export default new Vuex.Store({
@@ -10,6 +11,7 @@ export default new Vuex.Store({
   modules: {
     mainStore: mainStore,
     signStore: signStore,
-    popStore: popStore
+    popStore: popStore,
+    thematic: thematic
   }
 })

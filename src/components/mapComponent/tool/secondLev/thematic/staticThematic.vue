@@ -71,7 +71,6 @@
             async getAllData(){
                 const resultData = await getData();
                 if (resultData.status == 200) {
-                    debugger
                 }
             },
             hideModel() {
@@ -223,7 +222,7 @@
         },
         computed: {},
         mounted() {
-          this.getAllData();
+          // this.getAllData();
         }
     };
 </script>

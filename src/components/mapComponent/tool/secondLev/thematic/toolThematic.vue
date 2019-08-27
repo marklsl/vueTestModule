@@ -7,34 +7,25 @@
       <el-dropdown-item>
         <div code="dynamic" @click="dynamicThematic()">动态</div>
       </el-dropdown-item>
-      <div v-if="code==1">
-        <STATICTHEMATIC></STATICTHEMATIC>
-      </div>
+
     </el-dropdown-menu>
   </div>
 </template>
 
 <script>
-    import STATICTHEMATIC from "@/components/mapComponent/tool/secondLev/thematic/staticThematic"
-    // import DYNAMICTHEMATIC from "@/mapComponent/tool/secondLev/thematic/dynamicThematic"
     export default {
         name: 'toolThematic',
-        components: {
-            STATICTHEMATIC
-        },
+        components: {},
         data() {
-            return {
-                code:0
-            }
+            return {}
         },
         methods: {
             //静态截取
             staticThematic: function () {
-              this.code=1;
+                this.$store.dispatch("thematic/setIfThematicFun",true);
             },
             //动态截取
             dynamicThematic: function () {
-
             },
             //移除本模块的地图监听
             removeEvent: function () {

@@ -12,6 +12,9 @@
     <div v-if="if_pop">
       <POP></POP>
     </div>
+    <div v-if="if_thematic">
+      <STATICTHEMATIC></STATICTHEMATIC>
+    </div>
   </div>
 </template>
 
@@ -20,6 +23,7 @@
   import TOOLMAIN from "@/components/mapComponent/tool/toolMain";
   import TOOLLAYERGROUP from "@/components/mapComponent/layerGroup/toolDraw";
   import POP from "@/components/popGroup/rightPopup";
+  import STATICTHEMATIC from "@/components/mapComponent/tool/secondLev/thematic/staticThematic";
   import {mapState} from 'vuex';
 
   export default {
@@ -29,7 +33,8 @@
       LTileLayer,
       TOOLMAIN,
       TOOLLAYERGROUP,
-      POP
+      POP,
+      STATICTHEMATIC
     },
     data () {
       return {
@@ -65,6 +70,9 @@
     computed: {
       ...mapState("popStore",{
         if_pop: state => state.ifPop
+      }),
+      ...mapState("thematic",{
+          if_thematic: state =>state.ifThematic
       })
     }
   }

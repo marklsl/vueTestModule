@@ -1,3 +1,7 @@
+.boder{
+  position: fixed;
+  z-index: 400;
+}
 .screenshots_header{
 	position: fixed;
 	width: 100%;

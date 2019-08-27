@@ -18,6 +18,6 @@ export function testFile() {
   // return axios.post(url81 + '/tmc/upd', param, {headers: {"Content-Type": "multipart/form-data"}});//fromdate
 }
 export function getData() {
-  return axios.get( `/user/aaa`)//get请求
+  // return axios.get( `/user/aaa`)//get请求
 }
 
