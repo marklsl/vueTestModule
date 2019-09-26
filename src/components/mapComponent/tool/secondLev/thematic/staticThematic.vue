@@ -8,7 +8,7 @@
       </div>
     </div>
     <div class="screenshots_header">
-      <el-input v-model="needEmpty.screenShotsTitle" placeholder="请输入内容" maxlength="30"></el-input>
+      <el-input v-model="needEmpty.screenShotsTitle" placeholder="请输入标题" maxlength="30"></el-input>
     </div>
     <div class="screenshots_left"></div>
     <div class="screenshots_right"></div>
@@ -28,7 +28,7 @@
     <div class="screenshots_bottom">
       <div class="screenshots_static_btn">
         <div class="screenshots_task_btn">
-          任务名称：
+          攻略名称：
           <el-select
             class="inline-input"
             v-model="needEmpty.taskValue"
@@ -140,9 +140,6 @@
             },
             //图片发送
             confirm(file) {
-                // //blob转换成dataUrl
-                // let data = window.URL.createObjectURL(file);
-                // console.log("图片地址：" + data)
                 let formData = new FormData();
                 formData.append("filename", "my-file");  // 文件名
                 formData.append("operation", "upload_file")
