@@ -12,11 +12,9 @@
                 hasPop: false
             }
         },
-        mounted(){
-            this.locationFun();
-        },
+        mounted(){},
         methods: {
-            locationFun: function () {
+            init: function () {
               this.$store.dispatch("popStore/setIfPop", true);
               this.$store.dispatch("popStore/setTitleNamePop", "定位");
               this.$store.dispatch("popStore/setTextContentCodePop", "location");
@@ -25,6 +23,7 @@
             //移除本模块的地图监听
             removeEvent: function () {
                 let map = this.$store.getters["mainStore/getMapFn"];
+                this.$store.dispatch("popStore/setIfPop", false);
             },
             //关闭功能，清除所有绘制
             clearModel: function () {

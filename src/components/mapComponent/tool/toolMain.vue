@@ -18,10 +18,10 @@
           <span class="el-dropdown-link" code="MEASURE">量测<i class="el-icon-arrow-down el-icon--right"></i></span>
           <MEASURE ref="MEASURE"></MEASURE>
         </el-dropdown>
-        <el-dropdown class="tool_ele_btn" trigger="click">
-          <span class="el-dropdown-link" code="LOCATION">定位<i class="el-icon-arrow-down el-icon--right"></i></span>
-          <LOCATION ref="LOCATION"></LOCATION>
-        </el-dropdown>
+
+        <span class="tool_ele_btn el-dropdown-link" code="LOCATION">定位</span>
+        <LOCATION ref="LOCATION"></LOCATION>
+
       </div>
 
       <div class="grid-content bg-purple-light onClick" @click="openOrCloseTool($event)">
@@ -52,7 +52,7 @@
         },
         data() {
             return {
-                signMenuCode:[LOCATION]
+                signMenuCode:["LOCATION"]
             }
         },
         methods: {
@@ -87,6 +87,11 @@
                             _self.$refs[funName].removeEvent();
                         }
                     }
+                }
+                //如果是单选的按钮，先关闭原先的面板，再重新加载
+                if(_self.signMenuCode.indexOf($(this).attr("code"))!=-1){
+                    _self.$refs[$(this).attr("code")].removeEvent();
+                    _self.$refs[$(this).attr("code")].init();
                 }
                 //清除之前的样式
                 $(".tool_ele_box").find(".el-dropdown-link").removeClass("onClick");
