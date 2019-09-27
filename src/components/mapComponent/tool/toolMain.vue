@@ -6,19 +6,19 @@
         <span class="tool_ele_btn el-dropdown-link" code="TOOLPATH">路径规划
           <TOOLPATH ref="TOOLPATH"></TOOLPATH>
         </span>
-        <el-dropdown class="tool_ele_btn" trigger="click" :hide-on-click="false">
+        <el-dropdown class="tool_ele_btn" trigger="click">
           <span class="el-dropdown-link" code="THEMATIC">专题图<i class="el-icon-arrow-down el-icon--right"></i></span>
             <THEMATIC ref="THEMATIC"></THEMATIC>
         </el-dropdown>
-        <el-dropdown class="tool_ele_btn" trigger="click" :hide-on-click="false">
+        <el-dropdown class="tool_ele_btn" trigger="click">
           <span class="el-dropdown-link" code="SIGN">标记<i class="el-icon-arrow-down el-icon--right"></i></span>
           <SIGN ref="SIGN"></SIGN>
         </el-dropdown>
-        <el-dropdown class="tool_ele_btn" trigger="click" :hide-on-click="false">
+        <el-dropdown class="tool_ele_btn" trigger="click">
           <span class="el-dropdown-link" code="MEASURE">量测<i class="el-icon-arrow-down el-icon--right"></i></span>
           <MEASURE ref="MEASURE"></MEASURE>
         </el-dropdown>
-        <el-dropdown class="tool_ele_btn" trigger="click" :hide-on-click="false">
+        <el-dropdown class="tool_ele_btn" trigger="click">
           <span class="el-dropdown-link" code="LOCATION">定位<i class="el-icon-arrow-down el-icon--right"></i></span>
           <LOCATION ref="LOCATION"></LOCATION>
         </el-dropdown>
@@ -51,7 +51,9 @@
             CLEARALLTOOL,
         },
         data() {
-            return {}
+            return {
+                signMenuCode:[LOCATION]
+            }
         },
         methods: {
             openOrCloseTool: function (ele) {

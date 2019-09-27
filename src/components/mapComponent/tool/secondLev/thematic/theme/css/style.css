@@ -43,9 +43,9 @@
 	background-color: #000;
 }
 .screenshots_static_btn{
-	position: absolute;
-	right: 60px;
-	bottom: 10px;
+  position: absolute;
+  right: 118px;
+  bottom: 10px;
 }
 .screenshots_static_info{
 	color: #000;
@@ -54,6 +54,7 @@
 	font-family: none;
 	font-size: 16px;
 	letter-spacing: 5px;
+  text-align: left;
 }
 .screenshots_static_info .screenshots_static_input{
 	position: absolute;
@@ -151,7 +152,7 @@
 }
 .screenshots_update_btn{
 	position: relative;
-	left: 168px;
+	left: 144px;
 }
 .screenshots_task_btn{
 	font-size: 15px;

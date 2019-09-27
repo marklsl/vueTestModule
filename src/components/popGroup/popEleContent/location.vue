@@ -11,6 +11,24 @@
       <el-input code="inputLatCode" placeholder="请输入纬度,范围<3.87~53.55>"  @blur="loseBlueFun($event)" v-model="inputLat" class="latlng_location_input" oninput = "value=value.replace(/[^\d.]/g,'')"></el-input>
       <div class="latlng_location_ele_error">*请输入国界范围内纬度</div>
     </div>
+    <el-button type="success" class="right_pop_button" @click="rightPopCallBackFun">定位</el-button>
+
+<!--    <el-autocomplete-->
+<!--      class="inline-input"-->
+<!--      v-model="locationName"-->
+<!--      :fetch-suggestions="queryLocationName"-->
+<!--      placeholder="地名"-->
+<!--      :trigger-on-focus="false"-->
+<!--      clearable-->
+<!--    >-->
+<!--      <template slot-scope="{item}">-->
+<!--        <div class="name_box" @click="setLocationName($event)">-->
+<!--          <span class="name">{{ item.DMMC }}</span>-->
+<!--          <span class="addr">{{ item.DMDZ }}</span>-->
+<!--          <span class="location hide_class">{{ item.WZ }}</span>-->
+<!--        </div>-->
+<!--      </template>-->
+<!--    </el-autocomplete>-->
   </div>
 </template>
 
@@ -22,7 +40,13 @@
     data () {
       return {
         inputLng: '',
-        inputLat: ''
+        inputLat: '',
+        locationName:"",
+        item:{
+            DMMC:"",
+            DMDZ:"",
+            WZ:""
+        }
       }
     },
     methods:{
@@ -72,6 +96,12 @@
             console.log(e.latlng.lat+","+e.latlng.lng)
           });
         }
+      },
+      queryLocationName(){
+
+      },
+      setLocationName(){
+
       }
     },
   }

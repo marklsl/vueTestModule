@@ -73,15 +73,6 @@
                 if (resultData.status == 200) {
                 }
             },
-            hideModel() {
-
-            },
-            //编辑页面
-            async getSingleScreenshotsFun(id) {
-            },
-            //存储专题图
-            screenShots() {
-            },
             //获取整个图片
             getOuterImg() {
                 let self = this;
@@ -197,24 +188,7 @@
             },
             //关闭功能
             closeScreenshots() {
-                let screenshots = this.$store.getters.screenshots;
-                screenshots.isShowScreenshots = false;
-                this.closeCallBack();
-            },
-            // 关闭回调
-            closeCallBack() {
-                let arr = this.needDis;
-                if (arr.length > 0) {
-                    arr.forEach((item, index) => {
-                        let classArr = item.split(" ");
-                        let strClass = "";
-                        classArr.forEach((item2, index) => {
-                            strClass = "." + item2 + strClass;
-                        })
-                        $(strClass).show();
-                    })
-                    this.needDis = [];
-                }
+                this.$store.dispatch("thematic/setIfThematicFun",false);
             }
         },
         computed: {},

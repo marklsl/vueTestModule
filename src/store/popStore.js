@@ -5,7 +5,6 @@ export default{
     ifPop: false,//是否展示详情框
     titleName:"标题名称",
     textContentCode:"latlngLocation",
-    buttonName:"按钮名称",
     dtClass:"mr_height_width"
   },
 
@@ -19,9 +18,6 @@ export default{
     },
     getTextContentCodeFn(state){
       return state.textContentCode;
-    },
-    getButtonNameFn(state){
-      return state.buttonName;
     },
     getDtClassFn(state){
       return state.dtClass;
@@ -37,9 +33,6 @@ export default{
     },
     setTextContentCodePop(state, textContentCode){
       state.textContentCode = textContentCode;
-    },
-    setButtonNamePop(state, buttonName){
-      state.buttonName = buttonName;
     },
     setDtClassPop(state, dtClass){
       state.dtClass = dtClass;
@@ -57,9 +50,6 @@ export default{
     },
     setTextContentCodePop({commit,state},textContentCode){
       commit("setTextContentCodePop", textContentCode);
-    },
-    setButtonNamePop({commit,state},buttonName){
-      commit("setButtonNamePop", buttonName);
     },
     setDtClassPop({commit,state},dtClass){
       commit("setDtClassPop", dtClass);
