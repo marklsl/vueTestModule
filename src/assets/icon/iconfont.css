@@ -1,0 +1,25 @@
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1570688794638'); /* IE9 */
+  src: url('iconfont.eot?t=1570688794638#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAPEAAsAAAAAB+AAAAN4AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDBgqDNIMHATYCJAMMCwgABCAFhG0HSRvgBsgekqRjggQ0T0ABAADFw3/7/X6fmXk2F/UkGum+OolFgkZiETqR7yGJhvazh+ihmITGT+P8d4Nu0KcS1Gw0EE2OgDKYt7WWjyDUz0Q/kGQosOxRbgsLP7mUHAtZJetrRXUNuBz/TnCeZbmMtXVuXBhgHFBAe2OUZROkQALyhrELWuJpAtUCDehgsTsPpRTmpECc3wo7lMo4lYbK0BXaFSuLuAdk3XRF2AdwN/h+/AK9oJG0MvOsw7O5Fxp9jfraRCwTlQnK5VA5nR9sHRmbQCFOKoPHolFyE1FVjbHmwrYipKkiIhGBUjO3N/rHS0SbWd4HVmEq8TXKkRB8bUpJuP4wbZi+A+AFZsZuVKR1dURfpRZmLi99orxLvG0C4P25V22YKBsVwxcX3l4nJdrbEfp05du0T5d3RaG2DnYhtM5v2rvLuxiMcpdvJEf3XxtGhC2TYvj8PKB2rjdulm80rMV6X+XmLm3enSu2CAmDF9aDjdMyiK0+30DowVHjgVzZZKMEB10EGT872jVlottnhIdvHoe42vh48FiRpTPMvX5kDhuxYGZwCw26fhrm6nDC/ir66ID3hHfdAqn/J00b+HjghMvarGcvrjPr57a+Snqx5pgNi2v1nC22W1ffHH0rkmX2xA0zWA6z0qs5XL+0PpxsnY/pxHSddwt9fb0ZW/1r2p+3dRZ8LH+02YdS7ge/G8IpkphVeOq5Ro5MWnBpEDl7pQ7rcv0OOvG+HUfcvkycgjAhXBcXlC8ByK+IvJ/3G087c9RCi0b/NFzAl70v6UDb3dy9tVDwq2oKcC0qwTWmKxdF6SiNUHaaKpBQNZMfVA0jHoebxzuXE7rGEyQd88i6FonCbKKlsYW2rm1UG2zXN0ZliIrSw7pqgDBkHsmAl8iGHBCFeUDLhHe0DQUR1VEIdmwsR3zGktBm9CDiBeJdo33bw5mw8hTFg7QprQn4l0jBbQR0tXTymSVqpCnmZD6Kdhb7EENGgQ04D6U0kEbmDl2uxzHvO9raMVVXqkcaFcrYR5CNIQ+I8ALEcxma77VnmcLnTyHhgWSjhqaq9CVEArfdA11adDoQS6Pu1HQrl2R6JLRlYT4QgxgKsAF+JK2kAdKqh91BLlYXNyC+16GNWsV0NdaXN6v32wGVuV+OFDmKwXObpRbX0rg230Q2n2IrzDhCIQ==') format('woff2'),
+  url('iconfont.woff?t=1570688794638') format('woff'),
+  url('iconfont.ttf?t=1570688794638') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1570688794638#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.iconlatlng_location:before {
+  content: "\e664";
+}
+
+.iconname_location:before {
+  content: "\e692";
+}
+

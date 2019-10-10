@@ -4,6 +4,7 @@ import mainStore from "./mainStore";
 import signStore from "./signStore";
 import popStore from "./popStore";
 import thematic from "./thematic";
+import serveUrl from "./serveUrl";
 
 Vue.use(Vuex);
 export default new Vuex.Store({
@@ -12,6 +13,7 @@ export default new Vuex.Store({
     mainStore: mainStore,
     signStore: signStore,
     popStore: popStore,
-    thematic: thematic
+    thematic: thematic,
+    serveUrl:serveUrl
   }
 })

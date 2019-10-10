@@ -1,0 +1,23 @@
+{
+  "id": "1450562",
+  "name": "自定义旅游项目",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "自己开发的的一个个人旅游分享平台",
+  "glyphs": [
+    {
+      "icon_id": "5673325",
+      "name": "经纬度定位",
+      "font_class": "latlng_location",
+      "unicode": "e664",
+      "unicode_decimal": 58980
+    },
+    {
+      "icon_id": "10657191",
+      "name": "地名地址维护",
+      "font_class": "name_location",
+      "unicode": "e692",
+      "unicode_decimal": 59026
+    }
+  ]
+}

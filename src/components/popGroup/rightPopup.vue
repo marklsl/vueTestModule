@@ -6,9 +6,7 @@
         <i @click="closePopFun" class="el-icon-right self_close_btn_class"></i>
       </div>
       <div class="pop_content">
-        <div v-if="bouncedContent=='location'">
-          <LOCATION ref="mychild"></LOCATION>
-        </div>
+        <LOCATION v-if="bouncedContent=='location'" ref="mychild"></LOCATION>
       </div>
 
     </div>

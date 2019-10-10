@@ -9,6 +9,7 @@ import App from './App'
 import router from './router'
 import store from './store/rootStore';
 import 'leaflet/dist/leaflet.css';
+import './assets/icon/iconfont.css';
 import $ from 'jquery';
 
 // 引用axios，并设置基础URL为后端服务api地址

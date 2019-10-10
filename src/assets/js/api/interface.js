@@ -17,7 +17,11 @@ export function testFile() {
   // formData.append("angle1","0");
   // return axios.post(url81 + '/tmc/upd', param, {headers: {"Content-Type": "multipart/form-data"}});//fromdate
 }
-export function getData() {
+export function getDataaa() {
   // return axios.get( `/user/aaa`)//get请求
+}
+//get请求
+export function getMethod(url) {
+  return axios.get(url)
 }
 

@@ -3,21 +3,17 @@
   right: 0px;
   top: 20%;
   overflow: hidden;
-  background-color: #fff;
+  /*background-color: #fff;*/
   z-index: 400;
   border-radius: 4px;
-  box-shadow: 10px 7px 5px #888888;
+  /*box-shadow: 10px 7px 5px #888888;*/
 }
 .mr_height_width{
   width: 456px;
-  height: 218px;
 }
 .pop_head{
   background-color: #85ce61;
-  height: 22%;
-}
-.pop_content{
-  height: 60%;
+  height: 48px;
 }
 .pop_title{
   display: -webkit-box;
@@ -28,18 +24,33 @@
   text-shadow: 2px 4px 2px #e3e3e3;
   font-weight: 600;
 }
+.latlng_location_content{
+  height: 78%;
+  width: 100%;
+  background-color: #2c3e50;
+  position: absolute;
+  z-index: 2;
+}
+.name_location{
+  position: absolute;
+  height: 100px;
+  width: 100%;
+  background-color: aquamarine;
+  z-index: 1;
+}
 .latlng_location_ele_box{
   display: -webkit-box;
-  margin: 5px 0px 1px 40px;
+  margin: 0px 0px 1px 40px;
 }
 .latlng_location_text{
   line-height: 54px;
   display: -webkit-box;
   margin-right: 20px;
+  color: #e3e3e3;
 }
 .right_pop_button{
-  margin-top: -20px;
   float: right;
+  margin-right: 15px;
 }
 .latlng_location_ele_error{
   display: none;
