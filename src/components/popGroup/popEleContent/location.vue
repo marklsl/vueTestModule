@@ -26,13 +26,20 @@
         :fetch-suggestions="queryLocationName"
         placeholder="地名"
         :trigger-on-focus="false"
+        @select="setLocationName($event)"
         clearable
       >
+        <div class="poisArr_box" v-if="poisArr.length>0">
+          <div v-for="elePoi in poisArr">
+            <span>地名：{{elePoi.name}}</span>
+            <span>联系方式：{{elePoi.phone}}</span>
+          </div>
+        </div>
         <template slot-scope="{item}">
-          <div class="name_box" @click="setLocationName(item.name)">
+          <div class="name_box">
             <span class="name">{{ item.name }}</span>
             <span class="addr">{{ item.address }}</span>
-            <span class="location hide_class">{{ item.gbCode }}</span>
+            <span class="location hide_class">{{ item.lonlat }}</span>
           </div>
         </template>
       </el-autocomplete>
@@ -58,7 +65,8 @@
                     gbCode: "",
                     name: ""
                 },
-                isLatLngLocation: true
+                isLatLngLocation: true,
+                poisArr:[]
             }
         },
         methods: {
@@ -94,17 +102,22 @@
                     $(".latlng_location_content").animate({left: "0%"}, 300)
                 }
             },
+            /**
+             * 地名地址搜索
+             * @param placeName
+             * @param cb
+             */
             queryLocationName(placeName,cb) {
-                let self = this;
                 let tkStr = this.$store.getters["serveUrl/getTkFn"];
-                let param1 = "{'keyWord':'" + placeName + "','level':'15','mapBound':'-180,-90,180,90','queryType':'4','count':'10','start':'0'}";
+                let param1 = "{'keyWord':'" + placeName + "','sourceType':'0','level':'18','mapBound':'73.66,3.86,135.05,53.55'," +
+                    "'yingjiType':'1','queryType':'4','count':'10','start':'0'}";
                 let param2 = "&type=query&tk=" + tkStr;
                 let param = param1 + param2;
                 //地名地址服务
                 let locationService = this.$store.getters["serveUrl/getNameLocationFn"];
                 let resultUrl = locationService + "?postStr=" + param;
                 getMethod(resultUrl).then(function (data) {
-                    if (data.status && data.data) {
+                    if (data.status && data.data.suggests) {
                         cb(data.data.suggests);
                     }
                 }).catch(function (erro) {
@@ -112,19 +125,23 @@
                 });
             },
             //点击搜索具体的地名
-            setLocationName(placeName) {
-                let self = this;
+            setLocationName(ele) {
+                let _self=this;
                 let tkStr = this.$store.getters["serveUrl/getTkFn"];
-                let param1 = "{'keyWord':'" + placeName + "','level':'15','mapBound':'-180,-90,180,90','queryType':'1','count':'10','start':'0'}";
+                let param1 = "{'yingjiType':0,'sourceType':0,'keyWord':'" + ele.name + "'," +
+                    "'level':18,'queryType':1,'start':0,'mapBound':'73.66,3.86,135.05,53.55'," +
+                    "'count':10,'queryTerminal':10000,'specifyAdminCode':\""+ele.gbCode+"\"}";
                 let param2 = "&type=query&tk=" + tkStr;
                 let param = param1 + param2;
-                //地名地址服务
+                //地名地址code查询服务地址
                 let locationService = this.$store.getters["serveUrl/getNameLocationFn"];
                 let resultUrl = locationService + "?postStr=" + param;
                 getMethod(resultUrl).then(function (data) {
-                    if (data.status && data.data) {
-                        self.locationName=placeName;
-                        this.pointPositioning(lat,lng);
+                    _self.locationName=ele.name;
+                    debugger
+                    if(data.data.pois&&data.data.pois.length>0){
+                        _self.poisArr.push(...data.data.pois);
+                        // _self.poisArr=data.data.pois;
                     }
                 }).catch(function (erro) {
                     console.error(erro)

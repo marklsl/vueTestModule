@@ -10,6 +10,7 @@
 }
 .mr_height_width{
   width: 456px;
+  height: 250px;
 }
 .pop_head{
   background-color: #85ce61;
@@ -33,14 +34,24 @@
 }
 .name_location{
   position: absolute;
-  height: 100px;
+  height: 147px;
   width: 100%;
-  background-color: aquamarine;
+  background-color: #2c3e50;
   z-index: 1;
+}
+.name_location .el-autocomplete{
+  margin-top: 20px;
+  width: 272px;
+}
+.name_location .right_pop_button{
+  margin-top: 86px;
 }
 .latlng_location_ele_box{
   display: -webkit-box;
   margin: 0px 0px 1px 40px;
+}
+.latlng_location_ele_box:first-child{
+  margin-top: 20px;
 }
 .latlng_location_text{
   line-height: 54px;

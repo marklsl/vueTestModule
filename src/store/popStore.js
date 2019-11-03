@@ -3,9 +3,9 @@ export default{
   // 1. state
   state: {
     ifPop: false,//是否展示详情框
-    titleName:"标题名称",
-    textContentCode:"latlngLocation",
-    dtClass:"mr_height_width"
+    titleName:"标题名称",//弹出框标题
+    textContentCode:"latlngLocation",//弹出框的嵌入内容
+    dtClass:"mr_height_width"//弹出框的样式
   },
 
   // // 2. getters
