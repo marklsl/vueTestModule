@@ -3,7 +3,7 @@
     <div class="latlng_location_content">
       <div class="latlng_location_ele_box">
         <span class="latlng_location_text">经度:</span>
-        <el-input code="inputLngCode" placeholder="请输入经度,范围<73.67~135.04>" @blur="loseBlueFun($event)"
+        <el-input code="inputLngCode" placeholder="73.67~135.04" @blur="loseBlueFun($event)"
                   v-model="inputLng" class="latlng_location_input"
                   oninput="value=value.replace(/[^\d.]/g,'')"></el-input>
         <div class="latlng_location_ele_error">*请输入国界范围内经度</div>
@@ -11,12 +11,12 @@
 
       <div class="latlng_location_ele_box">
         <span class="latlng_location_text">纬度:</span>
-        <el-input code="inputLatCode" placeholder="请输入纬度,范围<3.87~53.55>" @blur="loseBlueFun($event)" v-model="inputLat"
+        <el-input code="inputLatCode" placeholder="3.87~53.55" @blur="loseBlueFun($event)" v-model="inputLat"
                   class="latlng_location_input" oninput="value=value.replace(/[^\d.]/g,'')"></el-input>
         <div class="latlng_location_ele_error">*请输入国界范围内纬度</div>
       </div>
-      <el-button type="success" class="right_pop_button" @click="rightPopCallBackFun">定位</el-button>
-      <el-button type="success" class="right_pop_button" @click="changeLocationMethod(0)">地名地址定位</el-button>
+      <el-button class="right_pop_button tool_btn_public" @click="changeLocationMethod(0)">地名地址定位</el-button>
+      <el-button class="right_pop_button tool_btn_public" @click="rightPopCallBackFun">定位</el-button>
     </div>
 
     <div class="name_location">
@@ -29,12 +29,6 @@
         @select="setLocationName($event)"
         clearable
       >
-        <div class="poisArr_box" v-if="poisArr.length>0">
-          <div v-for="elePoi in poisArr">
-            <span>地名：{{elePoi.name}}</span>
-            <span>联系方式：{{elePoi.phone}}</span>
-          </div>
-        </div>
         <template slot-scope="{item}">
           <div class="name_box">
             <span class="name">{{ item.name }}</span>
@@ -43,7 +37,13 @@
           </div>
         </template>
       </el-autocomplete>
-      <el-button type="success" class="right_pop_button" @click="changeLocationMethod(1)">经纬度定位</el-button>
+      <el-button class="right_pop_button tool_btn_public" @click="changeLocationMethod(1)">经纬度定位</el-button>
+      <div class="poisArr_box" v-if="poisArr.length>0">
+        <div v-for="elePoi in poisArr">
+          <span>地名：{{elePoi.name}}</span>
+          <span>联系方式：{{elePoi.phone}}</span>
+        </div>
+      </div>
     </div>
 
   </div>
@@ -74,13 +74,13 @@
             loseBlueFun: function (ele) {
                 if ($(ele.currentTarget).attr("code") == "inputLngCode") {
                     if (this.inputLng * 1 > 135.04 || this.inputLng * 1 < 73.67) {
-                        $(ele.currentTarget).parent().next().show();
+                        $(ele.currentTarget).parent().next().css("display","table");
                     } else {
                         $(ele.currentTarget).parent().next().hide();
                     }
                 } else {
                     if (this.inputLat * 1 > 53.55 || this.inputLat * 1 < 3.87) {
-                        $(ele.currentTarget).parent().next().show();
+                        $(ele.currentTarget).parent().next().css("display","table");
                     } else {
                         $(ele.currentTarget).parent().next().hide();
                     }
@@ -138,7 +138,6 @@
                 let resultUrl = locationService + "?postStr=" + param;
                 getMethod(resultUrl).then(function (data) {
                     _self.locationName=ele.name;
-                    debugger
                     if(data.data.pois&&data.data.pois.length>0){
                         _self.poisArr.push(...data.data.pois);
                         // _self.poisArr=data.data.pois;

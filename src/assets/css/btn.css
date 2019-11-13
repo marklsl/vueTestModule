@@ -1,0 +1,20 @@
+.tool_btn_public{
+  background-color: mediumaquamarine!important;
+  border: 1px solid darkgrey!important;
+  color: #fff!important;
+}
+.tool_btn_public:hover{
+  background-color: aquamarine!important;
+  border: 1px solid darkgrey!important;
+  color: #fff!important;
+}
+.tool_btn_public:focus{
+  background-color: mediumaquamarine!important;
+  border: 1px solid darkgrey!important;
+  color: #fff!important;
+}
+.tool_btn_public:active{
+  background-color: aqua!important;
+  border: 1px solid darkgrey!important;
+  color: #fff!important;
+}
