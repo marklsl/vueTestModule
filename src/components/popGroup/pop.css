@@ -8,7 +8,7 @@
 }
 .mr_height_width{
   width: 456px;
-  height: 250px;
+  height: 196px;
 }
 .pop_head{
   background-color: mediumaquamarine;
@@ -96,7 +96,43 @@
   height:80px;
 }
 .poisArr_box{
-  margin-top: 75px;
+  position: fixed;
+  padding: 20px 0px 20px 0px;
+  width: 456px;
+  top: 392px;
   color: #fff;
+  background: #2c3e50;
+  max-height: 400px;
+  overflow-y: auto;
+}
+.poisArr_box .list_ele_div{
+  line-height: 30px;
+  position: relative;
+  cursor: pointer;
+}
+.list_ele_div.odd{
+  background-color: darkslategrey;
+}
+.list_ele_div .location_name{
+  width: 258px;
+  text-align: left;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  position: relative;
+  top: 9px;
+}
+.list_ele_div .phone{
+  font-size: 12px;
+  opacity: 0.6;
+  width: 140px;
+  text-align: left;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  position: relative;
+  top: 9px;
 }
 

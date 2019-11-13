@@ -2,7 +2,14 @@
   <div class="marker_box">
     <div class="marker_dis" v-for="markerSign in markerArr">
       <l-marker :lat-lng="markerSign.latLng">
-        <l-icon :iconUrl="markerSign.markerIcon.iconUrl" :iconSize="markerSign.markerIcon.iconSize" :iconAnchor="markerSign.markerIcon.iconAnchor" :popupAnchor="markerSign.markerIcon.popupAnchor" />
+        <l-icon :iconUrl="markerSign.markerIcon.iconUrl"
+                :iconSize="markerSign.markerIcon.iconSize"
+                :iconAnchor="markerSign.markerIcon.iconAnchor"
+                :popupAnchor="markerSign.markerIcon.popupAnchor"
+                :shadowUrl="markerSign.markerIcon.shadowUrl"
+                :shadowSize="markerSign.markerIcon.shadowSize"
+                :shadowAnchor="markerSign.markerIcon.shadowAnchor"
+        />
         <l-popup :content="markerSign.text"/>
       </l-marker>
     </div>

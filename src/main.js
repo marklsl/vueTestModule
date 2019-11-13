@@ -11,6 +11,7 @@ import store from './store/rootStore';
 import 'leaflet/dist/leaflet.css';
 import './assets/icon/iconfont.css';//字体文件的css
 import './assets/css/btn.css';//公共样式的按钮样式
+import './assets/css/general.css';//公共样式的按钮样式
 import $ from 'jquery';
 
 // 引用axios，并设置基础URL为后端服务api地址

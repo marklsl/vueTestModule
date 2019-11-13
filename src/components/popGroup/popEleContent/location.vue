@@ -38,14 +38,13 @@
         </template>
       </el-autocomplete>
       <el-button class="right_pop_button tool_btn_public" @click="changeLocationMethod(1)">经纬度定位</el-button>
-      <div class="poisArr_box" v-if="poisArr.length>0">
-        <div v-for="elePoi in poisArr">
-          <span>地名：{{elePoi.name}}</span>
-          <span>联系方式：{{elePoi.phone}}</span>
-        </div>
+    </div>
+    <div class="poisArr_box" v-if="poisArr.length>0&&showPlaceNameList">
+      <div class="list_ele_div" @click="locationPlaceName(elePoi.lonlat)" :class="index%2==0?'odd':'even'" v-for="(elePoi,index) in poisArr">
+        <span class="location_name">地名：{{elePoi.name}}</span>
+        <span class="phone">联系方式：{{elePoi.phone}}</span>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -66,7 +65,26 @@
                     name: ""
                 },
                 isLatLngLocation: true,
-                poisArr:[]
+                poisArr:[],
+                showPlaceNameList:true,
+                ptMarkerIcon: {
+                    iconUrl: require('@/components/mapComponent/tool/theme/img/location_big.png'),
+                    shadowUrl:require('@/components/mapComponent/tool/theme/img/location_shadow.png'),
+                    iconSize: [32, 45],
+                    iconAnchor: [15, 43],
+                    popupAnchor: [0, -18],
+                    shadowSize:[30,15],
+                    shadowAnchor: [3, 12],
+                },
+                bigMarkerIcon: {
+                    iconUrl: require('@/components/mapComponent/tool/theme/img/location_big.png'),
+                    shadowUrl:require('@/components/mapComponent/tool/theme/img/location_shadow.png'),
+                    iconSize: [32, 45],
+                    iconAnchor: [15, 43],
+                    popupAnchor: [0, -18],
+                    shadowSize:[30,15],
+                    shadowAnchor: [3, 12],
+                }
             }
         },
         methods: {
@@ -97,9 +115,11 @@
              */
             changeLocationMethod(code) {
                 if (code == 0) {
-                    $(".latlng_location_content").animate({left: "100%"}, 300)
+                    $(".latlng_location_content").animate({left: "100%"}, 300);
+                    this.showPlaceNameList=true;
                 } else if (code == 1) {
-                    $(".latlng_location_content").animate({left: "0%"}, 300)
+                    $(".latlng_location_content").animate({left: "0%"}, 300);
+                    this.showPlaceNameList=false;
                 }
             },
             /**
@@ -138,15 +158,19 @@
                 let resultUrl = locationService + "?postStr=" + param;
                 getMethod(resultUrl).then(function (data) {
                     _self.locationName=ele.name;
+                    _self.poisArr=[];
                     if(data.data.pois&&data.data.pois.length>0){
                         _self.poisArr.push(...data.data.pois);
-                        // _self.poisArr=data.data.pois;
                     }
                 }).catch(function (erro) {
                     console.error(erro)
                 });
             },
-            //画点定位
+            //地名列表的点击定位
+            locationPlaceName(lngLat){
+                this.placeNamePositioning(lngLat.split(" ")[1],lngLat.split(" ")[0],"",true);
+            },
+            //经纬度定位画点集合
             pointPositioning(lat,lng){
                 if (!(lng * 1 > 135.04 || lng * 1 < 73.67 || lat * 1 > 53.55 || lat * 1 < 3.87)) {
                     let mapNew = this.$store.getters["mainStore/getMapFn"];
@@ -158,21 +182,45 @@
                     let oldMarkerArr = this.$store.getters["signStore/getMarkerArrFn"];
                     let eleMarker = {
                         latLng: L.latLng(lat, lng),
-                        markerIcon: {
-                            iconUrl: require('@/components/mapComponent/tool/theme/img/nameLocation.png'),
-                            iconSize: [32, 45],
-                            iconAnchor: [17, 50],
-                            popupAnchor: [0, -18]
-                        },
+                        markerIcon: this.ptMarkerIcon,
                         text: 'this is a marker'
                     };
                     oldMarkerArr.tool.location = [];
                     oldMarkerArr.tool.location.push(eleMarker);
                     this.$store.dispatch("signStore/setMarkerArr", oldMarkerArr);
-
-                    mapNew.on("click testLocation", function (e) {
-                        console.log(e.latlng.lat + "," + e.latlng.lng)
-                    });
+                }
+            },
+            /**
+             * 绘制点
+             * @param lat
+             * @param lng
+             * @param isSaveOldPoint：是否保留之前绘制的点
+             * @param isBigPoint:是否是大图标
+             */
+            placeNamePositioning(lat,lng,isSaveOldPoint,isBigPoint){
+                if (!(lng * 1 > 135.04 || lng * 1 < 73.67 || lat * 1 > 53.55 || lat * 1 < 3.87)) {
+                    let mapNew = this.$store.getters["mainStore/getMapFn"];
+                    mapNew.panTo(new L.LatLng(lat, lng), {
+                        animate: true,
+                        duration: 0.5
+                    })
+                    //绘制点图片
+                    let oldMarkerArr = this.$store.getters["signStore/getMarkerArrFn"];
+                    let eleMarker = {
+                        latLng: L.latLng(lat, lng),
+                        markerIcon: isBigPoint?this.bigMarkerIcon:this.ptMarkerIcon,
+                        text: 'this is a marker',
+                        options:{
+                            isBigPoint:isBigPoint,
+                            bigPointUrl:"location_big"
+                        }
+                    };
+                    if(isSaveOldPoint){oldMarkerArr.tool.location=[]};
+                    //删除大图标
+                    if(oldMarkerArr.tool.location&&oldMarkerArr.tool.location.length>0){
+                    }
+                    oldMarkerArr.tool.location.push(eleMarker);
+                    this.$store.dispatch("signStore/setMarkerArr", oldMarkerArr);
                 }
             }
         },
