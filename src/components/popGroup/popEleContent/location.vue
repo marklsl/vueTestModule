@@ -68,7 +68,7 @@
                 poisArr:[],
                 showPlaceNameList:true,
                 ptMarkerIcon: {
-                    iconUrl: require('@/components/mapComponent/tool/theme/img/location_big.png'),
+                    iconUrl: require('@/components/mapComponent/tool/theme/img/location_sml.png'),
                     shadowUrl:require('@/components/mapComponent/tool/theme/img/location_shadow.png'),
                     iconSize: [32, 45],
                     iconAnchor: [15, 43],
@@ -162,13 +162,22 @@
                     if(data.data.pois&&data.data.pois.length>0){
                         _self.poisArr.push(...data.data.pois);
                     }
+                    _self.locationPtPoint(_self.poisArr);
                 }).catch(function (erro) {
                     console.error(erro)
                 });
             },
-            //地名列表的点击定位
+            //点击单个地名地址定位
             locationPlaceName(lngLat){
-                this.placeNamePositioning(lngLat.split(" ")[1],lngLat.split(" ")[0],"",true);
+                this.placeNamePositioning(lngLat.split(" ")[1],lngLat.split(" ")[0],true,true);
+            },
+            //多个地名地址定位
+            locationPtPoint(arr){
+                if(arr&&arr.length>0){
+                    arr.forEach((item)=>{
+                        this.placeNamePositioning(item.lonlat.split(" ")[1],item.lonlat.split(" ")[0],true,false);
+                    })
+                }
             },
             //经纬度定位画点集合
             pointPositioning(lat,lng){
@@ -215,11 +224,18 @@
                             bigPointUrl:"location_big"
                         }
                     };
-                    if(isSaveOldPoint){oldMarkerArr.tool.location=[]};
+                    if(!isSaveOldPoint){oldMarkerArr.tool.location=[]};
+                    let newLocationMarker=[];
                     //删除大图标
                     if(oldMarkerArr.tool.location&&oldMarkerArr.tool.location.length>0){
+                        oldMarkerArr.tool.location.forEach((item)=>{
+                            if(!item.options.isBigPoint){
+                                newLocationMarker.push(item);
+                            }
+                        })
                     }
-                    oldMarkerArr.tool.location.push(eleMarker);
+                    newLocationMarker.push(eleMarker);
+                    oldMarkerArr.tool.location=newLocationMarker;
                     this.$store.dispatch("signStore/setMarkerArr", oldMarkerArr);
                 }
             }
