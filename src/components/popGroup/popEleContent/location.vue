@@ -72,7 +72,7 @@
           iconUrl: require('@/components/mapComponent/tool/theme/img/location_sml.png'),
           shadowUrl: require('@/components/mapComponent/tool/theme/img/location_shadow.png'),
           iconSize: [23, 32],
-          iconAnchor: [5, 43],
+          iconAnchor: [11, 32],
           popupAnchor: [0, -18],
           shadowSize: [20, 10],
           shadowAnchor: [3, 12],
