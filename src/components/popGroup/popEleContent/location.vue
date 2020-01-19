@@ -200,7 +200,7 @@
           let eleMarker = {
             latLng: L.latLng(lat, lng),
             markerIcon: isBigPoint ? this.bigMarkerIcon : this.ptMarkerIcon,
-            text: 'this is a marker',
+            // text: 'this is a marker',
             options: {
               isBigPoint: isBigPoint
             }
@@ -221,10 +221,10 @@
           newLocationMarker.push(eleMarker);
           oldMarkerArr.tool.location = newLocationMarker;
           this.$store.dispatch("signStore/setMarkerArr", oldMarkerArr);
-
           L.circle([lat,lng],{color:'#FF0000',fillColor:'#FF0000',radius:100,fillOpacity:1}).addTo(mapNew)
         }
       },
+        //清除本模块绘制
       clearLocation(){
         //清空绘制
         let oldMarkerArr = this.$store.getters["signStore/getMarkerArrFn"];

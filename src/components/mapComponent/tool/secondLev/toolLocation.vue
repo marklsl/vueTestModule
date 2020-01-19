@@ -22,7 +22,6 @@
             },
             //移除本模块的地图监听
             removeEvent: function () {
-                let map = this.$store.getters["mainStore/getMapFn"];
                 this.$store.dispatch("popStore/setIfPop", false);
             },
             //关闭功能，清除所有绘制

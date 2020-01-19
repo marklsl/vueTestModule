@@ -189,6 +189,9 @@
             //关闭功能
             closeScreenshots() {
                 this.$store.dispatch("thematic/setIfThematicFun",false);
+            },
+            screenShots(){
+
             }
         },
         computed: {},

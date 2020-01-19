@@ -80,7 +80,7 @@
                       }
                   }
                 }else{
-                    //清空模块的监听
+                    //清空模块的监听screenShots
                     let funName = $(".tool_ele_box").find(".el-dropdown-link.onClick").attr("code");
                     if (funName) {//如果之前有模块是打开的
                         if(funName!="CLOSE"){//清空按钮除外

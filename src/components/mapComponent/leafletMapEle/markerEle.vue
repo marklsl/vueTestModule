@@ -10,7 +10,7 @@
                 :shadowSize="markerSign.markerIcon.shadowSize"
                 :shadowAnchor="markerSign.markerIcon.shadowAnchor"
         />
-        <l-popup :content="markerSign.text"/>
+        <l-popup v-if="markerSign.text" :content="markerSign.text"/>
       </l-marker>
     </div>
   </div>
